@@ -44,6 +44,7 @@ public:
 private:
 	string
 		strAplDomain,
-		strAplName;
+		strAplName,
+		strRegistryKeyPath;
 
 };
