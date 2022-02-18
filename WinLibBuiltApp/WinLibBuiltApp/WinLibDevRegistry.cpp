@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------
 //
-//	MainWindow.h
+//	WinLibDevRegistry.cpp
 //
 //---------------------------------------------------------------------------------------
 //
@@ -8,20 +8,31 @@
 //
 //---------------------------------------------------------------------------------------
 using namespace std;
-#include "MainWindow.h"
 #include "WinLibDevRegistry.h"
 #include <string>
 
 //---------------------------------------------------------------------------------------
 //
 //	Constructors
-MainWindow::MainWindow()
+//
+//---------------------------------------------------------------------------------------
+WinLibDevRegistry::WinLibDevRegistry()
+{
+
+}
+
+WinLibDevRegistry::WinLibDevRegistry(
+	string* strDomainName, 
+	string* strApplicationName)
 {
 	//-----------------------------------------------------------------------------------
 	//
-	//	Test WinLibRegistry class
-	WinLibRegistry();
-	
+	// Set class instance values
+	//
+	strDomain = *strDomainName;
+	strApplication = *strApplicationName;
+
+
 }
 
 //---------------------------------------------------------------------------------------
@@ -37,19 +48,4 @@ MainWindow::MainWindow()
 //	Private Functions
 //
 //---------------------------------------------------------------------------------------
-//
-//	WinLibRegistry
-//	Test function for the WinLibRegistry class
-//
-//---------------------------------------------------------------------------------------
-void MainWindow::WinLibRegistry()
-{
-	string
-		strDomain = "CVelthoven.com",
-		strApplication = "WinLibBuiltApp";
-	//-----------------------------------------------------------------------------------
-	//
-	//	Create class instance
-	//
-	WinLibDevRegistry* clsRegistry = new WinLibDevRegistry(&strDomain, &strApplication);
-}
+
