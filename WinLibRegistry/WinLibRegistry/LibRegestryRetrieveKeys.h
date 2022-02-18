@@ -1,32 +1,19 @@
 //---------------------------------------------------------------------------------------
 //
-//	MainWindow.h
+//	LibRegestryRetrieveKeys.h
 //
 //---------------------------------------------------------------------------------------
 #pragma once
-
 //---------------------------------------------------------------------------------------
 //
 //	Header files
 //
 //---------------------------------------------------------------------------------------
-//using namespace std;// needed for default header files
-#include "WinLibTestApp.h"
 #include "LibRegistry.h"
 
-//---------------------------------------------------------------------------------------
-//
-//	MainWindow class definitions
-//
-//---------------------------------------------------------------------------------------
-
-class MainWindow
+class LibRegestryRetrieveKeys : LibRegistry
 {
-public:
-	MainWindow();
-	~MainWindow();
-
-	//LibRegistry clApplicationSettings;
-
+	// Inherited via LibRegistry
+	virtual int GetRestrisryKeyValue() override;
 };
 
