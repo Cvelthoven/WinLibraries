@@ -40,8 +40,35 @@ WinLibDevRegistry::WinLibDevRegistry(
 //	Public Functions
 //
 //---------------------------------------------------------------------------------------
+//
+//	GetRegistryKeyValue
+//	- input:
+//		- strSection
+//		- strKey
+//	- output:
+//		- GetRegistryKeyValue
+//		- strRegistryKevValue
+//
+//---------------------------------------------------------------------------------------
+int WinLibDevRegistry::GetRegistryKeyValue(
+	const string& strSection,
+	const string& strKey,
+	string& strRegKeyValue)
+{
+	//-----------------------------------------------------------------------------------
+	//
+	//	Local variables
+	int
+		iRC =0;
 
-
+	//-----------------------------------------------------------------------------------
+	//
+	//Retrieve key value
+	//
+//	iRC = GetRegistryKeyValue(strSection, strKey);
+//	strRegKeyValue = strRegistryKeyValue;
+	return iRC;
+}
 
 //---------------------------------------------------------------------------------------
 //

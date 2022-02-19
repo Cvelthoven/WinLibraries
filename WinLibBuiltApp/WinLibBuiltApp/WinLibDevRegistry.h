@@ -22,9 +22,23 @@ using namespace std;
 class WinLibDevRegistry
 {
 public:
+	//-----------------------------------------------------------------------------------
+	//
+	//	Constructors and destructor
+	//
 	WinLibDevRegistry();
 	WinLibDevRegistry(string* strDomainName, string* strApplicationName);
 	~WinLibDevRegistry();
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Public methodes
+	//
+	int GetRegistryKeyValue(
+		const string& strSection,
+		const string& strKey,
+		string& strRegKeyValue);
+
 
 private:
 	string

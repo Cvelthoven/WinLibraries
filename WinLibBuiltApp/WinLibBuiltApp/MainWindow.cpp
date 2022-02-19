@@ -44,12 +44,21 @@ MainWindow::MainWindow()
 //---------------------------------------------------------------------------------------
 void MainWindow::WinLibRegistry()
 {
+	int
+		iRC;
+
 	string
 		strDomain = "CVelthoven.com",
-		strApplication = "WinLibBuiltApp";
+		strApplication = "WinLibBuiltApp",
+		strSection = "Builtsection01",
+		strKey = "BuiltKey01",
+		strKeyValue;
+
+
 	//-----------------------------------------------------------------------------------
 	//
 	//	Create class instance
 	//
 	WinLibDevRegistry* clsRegistry = new WinLibDevRegistry(&strDomain, &strApplication);
+	iRC = clsRegistry->GetRegistryKeyValue(strSection, strKey, strKeyValue);
 }
