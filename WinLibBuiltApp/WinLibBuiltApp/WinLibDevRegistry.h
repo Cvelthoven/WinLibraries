@@ -41,8 +41,20 @@ public:
 
 
 private:
+	//-----------------------------------------------------------------------------------
+	//
+	//	Public methodes
+	//
+	int GetRegistryKeyValue(
+		const string& strSection,
+		const string& strKey);
+
+	int
+		iRegistryKeyValue;
+
 	string
 		strDomain,
-		strApplication;
+		strApplication,
+		strRegistryKeyValue;
 };
 
