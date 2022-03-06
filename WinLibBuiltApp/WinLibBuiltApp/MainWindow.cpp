@@ -60,5 +60,10 @@ void MainWindow::WinLibRegistry()
 	//	Create class instance
 	//
 	WinLibDevRegistry* clsRegistry = new WinLibDevRegistry(&strDomain, &strApplication);
+
+	//--------------------------------------------------------------------------------------
+	//
+	//	Retrieve registry key
+	//
 	iRC = clsRegistry->GetRegistryKeyValue(strSection, strKey, strKeyValue);
 }

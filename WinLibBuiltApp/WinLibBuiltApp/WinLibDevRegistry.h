@@ -38,6 +38,10 @@ public:
 		const string& strSection,
 		const string& strKey,
 		string& strRegKeyValue);
+	int GetRegistryKeyValue(
+		const string& strSection,
+		const string& strKey,
+		int& iRegKeyValue);
 
 
 private:
