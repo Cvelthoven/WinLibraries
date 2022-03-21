@@ -42,12 +42,16 @@ public:
 		const string& strSection,
 		const string& strKey,
 		int& iRegKeyValue);
+	int SetRegistryKeyValue(
+		const string& strSection,
+		const string& strKey,
+		const string& strRegKeyValue);
 
 
 private:
 	//-----------------------------------------------------------------------------------
 	//
-	//	Public methodes
+	//	Private methodes
 	//
 	int GetRegistryKeyValue(
 		const string& strSection,

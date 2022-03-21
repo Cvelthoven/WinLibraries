@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI verified="false" xmi.version="1.2" timestamp="2022-03-18T09:39:41" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
+ <XMI.header>
+  <XMI.documentation>
+   <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
+   <XMI.exporterVersion>1.6.18</XMI.exporterVersion>
+   <XMI.exporterEncoding>UnicodeUTF8</XMI.exporterEncoding>
+  </XMI.documentation>
+  <XMI.metamodel xmi.version="1.4" href="UML.xml" xmi.name="UML"/>
+ </XMI.header>
+ <XMI.content>
+  <UML:Model isSpecification="false" isAbstract="false" isLeaf="false" xmi.id="m1" isRoot="false" name="UML Model">
+   <UML:Namespace.ownedElement>
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="folder" name="folder"/>
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="constructor" name="constructor"/>
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="destructor" name="destructor"/>
+    <UML:Model visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Logical_View" name="Logical View">
+     <UML:Namespace.ownedElement>
+      <UML:Package stereotype="folder" visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Datatypes" name="Datatypes">
+       <UML:Namespace.ownedElement>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uDkeGKFQtGAmv" name="char"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uWMepBJ2qg4UF" name="int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="umcEurZMYZtZt" name="float"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u3nPYJNebPmD7" name="double"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u3wcBxJJ3v0GW" name="bool"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uaPcJlB7Bqu53" name="string"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u2GEI4eifGCUc" name="unsigned char"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uGlKds3tdrJKs" name="signed char"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uJVxdJIToV9l5" name="unsigned int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uq0k8h4NgGzLa" name="signed int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uv77PKbdMTJzH" name="short int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ubdh3556N6T45" name="unsigned short int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uRMpr6FIpV0E3" name="signed short int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uWFEBCOPbqkxI" name="long int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="unXU94JQmlrCf" name="signed long int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uLtezFrOHvMWU" name="unsigned long int"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ubRE65XWqPtzK" name="long double"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uWRBlBDB8XTzX" name="wchar_t"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" elementReference="uaPcJlB7Bqu53" isRoot="false" xmi.id="uZALVNiKAhOOk" name="string*"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" elementReference="uaPcJlB7Bqu53" isRoot="false" xmi.id="umepfsxxE97FJ" name="const string&amp;"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" elementReference="uaPcJlB7Bqu53" isRoot="false" xmi.id="uMjqbNu1Hqtf1" name="string&amp;"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" elementReference="uWMepBJ2qg4UF" isRoot="false" xmi.id="uqPtA0Vwyruj0" name="int&amp;"/>
+       </UML:Namespace.ownedElement>
+      </UML:Package>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u2Ymcmxyi9dFh" comment="---------------------------------------------------------------------------------------&#xa;&#xa;MainWindow class definitions&#xa;&#xa;---------------------------------------------------------------------------------------&#xa;" name="MainWindow">
+       <UML:Classifier.feature>
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ujgtd01gPRH2q" isOverride="false" name="MainWindow" isInline="false" isVirtual="false"/>
+        <UML:Operation stereotype="destructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ucH1CGd5MqYDt" isOverride="false" name="~MainWindow" isInline="false" isVirtual="false"/>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uxbozPzhUKoAV" isOverride="false" name="WinLibRegistry" isInline="false" isVirtual="false"/>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="umAYV4NADpJl4" comment="---------------------------------------------------------------------------------------&#xa;&#xa;MainWindow class definitions&#xa;&#xa;---------------------------------------------------------------------------------------&#xa;" name="WinLibDevRegistry">
+       <UML:Classifier.feature>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="uxiVHlsbktKdj" type="uWMepBJ2qg4UF" name="iRegistryKeyValue"/>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="uj4UIeQIV1KQk" type="uaPcJlB7Bqu53" name="strDomain"/>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="uYtKpAT0wdFkS" type="uaPcJlB7Bqu53" name="strApplication"/>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="uDkXlDUZA4bNm" type="uaPcJlB7Bqu53" name="strRegistryKeyValue"/>
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uuXz5R1EaVeol" comment="-----------------------------------------------------------------------------------&#xd;&#xa;&#xa;Constructors and destructor&#xd;&#xa;" isOverride="false" name="WinLibDevRegistry" isInline="false" isVirtual="false"/>
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uwdBBDP56ok6u" isOverride="false" name="WinLibDevRegistry" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uMAQXNCRSYbL6" type="uZALVNiKAhOOk" value="" name="strDomainName"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u6eI135SdkDA7" type="uZALVNiKAhOOk" value="" name="strApplicationName"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation stereotype="destructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u9TqTGGXHUfxk" isOverride="false" name="~WinLibDevRegistry" isInline="false" isVirtual="false"/>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="utCVcDV2Z6TMU" comment="-----------------------------------------------------------------------------------&#xd;&#xa;&#xa;Public methodes&#xd;&#xa;" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uSyqEDWSKqjIv" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ui1UZnI7cgUWy" type="umepfsxxE97FJ" value="" name="strSection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uPwT1QwHg8X3j" type="umepfsxxE97FJ" value="" name="strKey"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ufzCjVMGkaESD" type="uMjqbNu1Hqtf1" value="" name="strRegKeyValue"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uE9lIf0l5TKdS" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uNmszLdMhJSQj" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uKyqfBmL9JOFL" type="umepfsxxE97FJ" value="" name="strSection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u9UXhA4bx7Mcx" type="umepfsxxE97FJ" value="" name="strKey"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u2867mwuERxIt" type="uqPtA0Vwyruj0" value="" name="iRegKeyValue"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uXsfeV5D0vUE8" isOverride="false" name="SetRegistryKeyValue" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uWhPC5Cy7Q9nK" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="urhgZaarhCE5m" type="umepfsxxE97FJ" value="" name="strSection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uCGHfe0ZFkRSD" type="umepfsxxE97FJ" value="" name="strKey"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uMLQUeis2HBB7" type="umepfsxxE97FJ" value="" name="strRegKeyValue"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uiEsDpLYYgQmk" comment="-----------------------------------------------------------------------------------&#xd;&#xa;&#xa;Private methodes&#xd;&#xa;" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uuoku1w25NkSx" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uukhMQGqa8Hhg" type="umepfsxxE97FJ" value="" name="strSection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uhNgpEqqOyCjc" type="umepfsxxE97FJ" value="" name="strKey"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+     </UML:Namespace.ownedElement>
+     <XMI.extension xmi.extender="umbrello">
+      <diagrams resolution="96">
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="WinLibRegistry - class diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="389" canvaswidth="908" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#f6f6f6" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffffc0" zoom="100" xmi.id="uCBW4Lvte85dP" documentation="" showscope="1" snapgrid="0" showatts="1" type="1">
+        <widgets>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-2064" showattsigs="601" showstereotype="1" y="-1435" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uNgWNNOO5wkNR" width="177" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" xmi.id="u2Ymcmxyi9dFh" autoresize="1" showscope="1" height="67" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-1752" showattsigs="601" showstereotype="1" y="-1226" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="u8lazcUQYwKWE" width="596" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" xmi.id="umAYV4NADpJl4" autoresize="1" showscope="1" height="180" showopsigs="601"/>
+        </widgets>
+        <messages/>
+        <associations/>
+       </diagram>
+      </diagrams>
+     </XMI.extension>
+    </UML:Model>
+    <UML:Model visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Use_Case_View" name="Use Case View">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Component_View" name="Component View">
+     <UML:Namespace.ownedElement>
+      <UML:Package stereotype="folder" visibility="public" isSpecification="false" namespace="Component_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="umYAMi2YMNI8F" name="E:/GitHub/Cvelthoven/Libraries/WinLibraries/WinLibBuiltApp/WinLibBuiltApp">
+       <UML:Namespace.ownedElement>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uOMzR8xJLNRpn" comment=" header.h : include file for standard system include files,&#xd;" name="framework.h"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ue7R7S2Vpm2jW" comment="---------------------------------------------------------------------------------------&#xd;" name="MainWindow.cpp"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uZixQWGbqM6gw" comment="---------------------------------------------------------------------------------------&#xd;" name="MainWindow.h"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uUFr5bVyhUCge" comment="{{NO_DEPENDENCIES}}&#xd;" name="Resource.h"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u5t8E6xmnE4LC" name="small.ico"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uJkg0w66D44y1" name="targetver.h"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uE4P7RfDr9Ax3" comment="---------------------------------------------------------------------------------------&#xd;" name="WinLibBuiltApp.cpp"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="umNjB8RvwbcAy" name="WinLibBuiltApp.h"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uQ1mYRPJzezNB" name="WinLibBuiltApp.ico"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uFVrBvAawM6tC" comment="Microsoft Visual C++ generated resource script.&#xd;" name="WinLibBuiltApp.rc"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="upihpZy9PMyCL" name="WinLibBuiltApp.vcxproj"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uoJj0yggY9cxH" name="WinLibBuiltApp.vcxproj.filters"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u30PRk1AFmmA2" name="WinLibBuiltApp.vcxproj.user"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uRpIa1l4tm4CM" comment="---------------------------------------------------------------------------------------&#xd;" name="WinLibDevRegistry.cpp"/>
+        <UML:Artifact visibility="public" isSpecification="false" namespace="umYAMi2YMNI8F" drawas="1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uvU0Lq6tXycZ7" comment="---------------------------------------------------------------------------------------&#xd;" name="WinLibDevRegistry.h"/>
+       </UML:Namespace.ownedElement>
+      </UML:Package>
+     </UML:Namespace.ownedElement>
+    </UML:Model>
+    <UML:Model visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Deployment_View" name="Deployment View">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Entity_Relationship_Model" name="Entity Relationship Model">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+   </UML:Namespace.ownedElement>
+  </UML:Model>
+ </XMI.content>
+ <XMI.extensions xmi.extender="umbrello">
+  <docsettings viewid="uCBW4Lvte85dP" uniqueid="uOzmFeGKAoUTm" documentation=""/>
+  <listview>
+   <listitem open="1" type="800" id="Views">
+    <listitem open="1" type="821" id="Component_View">
+     <listitem open="0" type="820" id="umYAMi2YMNI8F">
+      <listitem open="0" type="824" id="uOMzR8xJLNRpn"/>
+      <listitem open="0" type="824" id="ue7R7S2Vpm2jW"/>
+      <listitem open="0" type="824" id="uZixQWGbqM6gw"/>
+      <listitem open="0" type="824" id="uUFr5bVyhUCge"/>
+      <listitem open="0" type="824" id="u5t8E6xmnE4LC"/>
+      <listitem open="0" type="824" id="uJkg0w66D44y1"/>
+      <listitem open="0" type="824" id="uE4P7RfDr9Ax3"/>
+      <listitem open="0" type="824" id="umNjB8RvwbcAy"/>
+      <listitem open="0" type="824" id="uQ1mYRPJzezNB"/>
+      <listitem open="0" type="824" id="uFVrBvAawM6tC"/>
+      <listitem open="0" type="824" id="upihpZy9PMyCL"/>
+      <listitem open="0" type="824" id="uoJj0yggY9cxH"/>
+      <listitem open="0" type="824" id="u30PRk1AFmmA2"/>
+      <listitem open="0" type="824" id="uRpIa1l4tm4CM"/>
+      <listitem open="0" type="824" id="uvU0Lq6tXycZ7"/>
+     </listitem>
+    </listitem>
+    <listitem open="1" type="827" id="Deployment_View"/>
+    <listitem open="1" type="836" id="Entity_Relationship_Model"/>
+    <listitem open="1" type="801" id="Logical_View">
+     <listitem open="0" type="830" id="Datatypes">
+      <listitem open="0" type="829" id="u3wcBxJJ3v0GW"/>
+      <listitem open="0" type="829" id="uDkeGKFQtGAmv"/>
+      <listitem open="0" type="829" id="umepfsxxE97FJ"/>
+      <listitem open="0" type="829" id="u3nPYJNebPmD7"/>
+      <listitem open="0" type="829" id="umcEurZMYZtZt"/>
+      <listitem open="0" type="829" id="uWMepBJ2qg4UF"/>
+      <listitem open="0" type="829" id="uqPtA0Vwyruj0"/>
+      <listitem open="0" type="829" id="ubRE65XWqPtzK"/>
+      <listitem open="0" type="829" id="uWFEBCOPbqkxI"/>
+      <listitem open="0" type="829" id="uv77PKbdMTJzH"/>
+      <listitem open="0" type="829" id="uGlKds3tdrJKs"/>
+      <listitem open="0" type="829" id="uq0k8h4NgGzLa"/>
+      <listitem open="0" type="829" id="unXU94JQmlrCf"/>
+      <listitem open="0" type="829" id="uRMpr6FIpV0E3"/>
+      <listitem open="0" type="829" id="uaPcJlB7Bqu53"/>
+      <listitem open="0" type="829" id="uMjqbNu1Hqtf1"/>
+      <listitem open="0" type="829" id="uZALVNiKAhOOk"/>
+      <listitem open="0" type="829" id="u2GEI4eifGCUc"/>
+      <listitem open="0" type="829" id="uJVxdJIToV9l5"/>
+      <listitem open="0" type="829" id="uLtezFrOHvMWU"/>
+      <listitem open="0" type="829" id="ubdh3556N6T45"/>
+      <listitem open="0" type="829" id="uWRBlBDB8XTzX"/>
+     </listitem>
+     <listitem open="0" type="813" id="u2Ymcmxyi9dFh">
+      <listitem open="0" type="815" id="ucH1CGd5MqYDt"/>
+      <listitem open="0" type="815" id="ujgtd01gPRH2q"/>
+      <listitem open="0" type="815" id="uxbozPzhUKoAV"/>
+     </listitem>
+     <listitem open="0" type="813" id="umAYV4NADpJl4">
+      <listitem open="0" type="815" id="u9TqTGGXHUfxk"/>
+      <listitem open="0" type="815" id="uiEsDpLYYgQmk"/>
+      <listitem open="0" type="815" id="uE9lIf0l5TKdS"/>
+      <listitem open="0" type="815" id="utCVcDV2Z6TMU"/>
+      <listitem open="0" type="814" id="uxiVHlsbktKdj"/>
+      <listitem open="0" type="815" id="uXsfeV5D0vUE8"/>
+      <listitem open="0" type="814" id="uYtKpAT0wdFkS"/>
+      <listitem open="0" type="814" id="uj4UIeQIV1KQk"/>
+      <listitem open="0" type="814" id="uDkXlDUZA4bNm"/>
+      <listitem open="0" type="815" id="uuXz5R1EaVeol"/>
+      <listitem open="0" type="815" id="uwdBBDP56ok6u"/>
+     </listitem>
+     <listitem open="0" type="807" id="uCBW4Lvte85dP" label="WinLibRegistry - class diagram"/>
+    </listitem>
+    <listitem open="1" type="802" id="Use_Case_View"/>
+   </listitem>
+  </listview>
+  <codegeneration>
+   <codegenerator language="C++"/>
+  </codegeneration>
+ </XMI.extensions>
+</XMI>

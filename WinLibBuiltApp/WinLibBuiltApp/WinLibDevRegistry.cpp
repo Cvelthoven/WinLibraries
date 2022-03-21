@@ -101,6 +101,28 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	iRegKeyValue = iRegistryKeyValue;
 	return iRC;
 }
+
+//---------------------------------------------------------------------------------------
+//
+//	GetRegistryKeyValue
+//	- input:
+//		- strSection
+//		- strKey
+//	- output:
+//		- GetRegistryKeyValue
+//		- strRegistryKevValue
+//
+//---------------------------------------------------------------------------------------
+int SetRegistryKeyValue(
+	const string& strSection,
+	const string& strKey,
+	const string& strRegKeyValue)
+{
+
+	return 0;
+}
+
+
 //---------------------------------------------------------------------------------------
 //
 //	Private Functions
