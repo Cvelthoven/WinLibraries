@@ -10,12 +10,16 @@
 using namespace std;
 #include "WinLibDevRegistry.h"
 #include <string>
-//#include <tchar.h>
 #include <Windows.h>
+//#include <tchar.h>
 
 //---------------------------------------------------------------------------------------
 //
 //	Constructors
+//
+//---------------------------------------------------------------------------------------
+//
+//	Default constructor
 //
 //---------------------------------------------------------------------------------------
 WinLibDevRegistry::WinLibDevRegistry()
@@ -23,6 +27,13 @@ WinLibDevRegistry::WinLibDevRegistry()
 
 }
 
+//---------------------------------------------------------------------------------------
+//
+//	Constructor with
+//		- Domainname
+//		- Application name
+//
+//---------------------------------------------------------------------------------------
 WinLibDevRegistry::WinLibDevRegistry(
 	string* strDomainName, 
 	string* strApplicationName)
@@ -34,9 +45,9 @@ WinLibDevRegistry::WinLibDevRegistry(
 	strDomain = *strDomainName;
 	strApplication = *strApplicationName;
 
-
 }
 
+//---------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------
 //
 //	Public Functions
@@ -68,9 +79,10 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	//Retrieve key value
 	//
 	iRC = GetRegistryKeyValue(strSection, strKey);
-strRegKeyValue = strRegistryKeyValue;
+	strRegKeyValue = strRegistryKeyValue;
 	return iRC;
 }
+
 //---------------------------------------------------------------------------------------
 //
 //	GetRegistryKeyValue
@@ -123,6 +135,7 @@ int SetRegistryKeyValue(
 }
 
 
+//---------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------
 //
 //	Private Functions
