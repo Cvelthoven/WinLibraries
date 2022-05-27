@@ -27,7 +27,8 @@ public:
 	//	Constructors and destructor
 	//
 	WinLibDevRegistry();
-	WinLibDevRegistry(string* strDomainName, string* strApplicationName);
+	WinLibDevRegistry(string* strHiveName, string* strDomainName, string* strApplicationName);
+	WinLibDevRegistry(string* strHiveName, string* strMainBranchName, string* strDomainName, string* strApplicationName);
 	~WinLibDevRegistry();
 
 	//-----------------------------------------------------------------------------------
@@ -58,11 +59,13 @@ private:
 		const string& strKey);
 
 	int
-		iRegistryKeyValue;
+		iRegistryKeyValue;// possible value of the key only used when the key is an integer
 
 	string
-		strDomain,
-		strApplication,
-		strRegistryKeyValue;
+		strHive,			// name of the hive
+		strMainBranch,		// name of the mainbranch 
+		strDomain,			// name of the domain of the application
+		strApplication,		// name of the application
+		strRegistryKeyValue;// possible value of the key only used when the key is a string
 };
 

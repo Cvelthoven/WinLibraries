@@ -30,11 +30,14 @@ WinLibDevRegistry::WinLibDevRegistry()
 //---------------------------------------------------------------------------------------
 //
 //	Constructor with
+//		- Hive
 //		- Domainname
 //		- Application name
+// 
 //
 //---------------------------------------------------------------------------------------
 WinLibDevRegistry::WinLibDevRegistry(
+	string* strHiveName,
 	string* strDomainName, 
 	string* strApplicationName)
 {
@@ -42,8 +45,37 @@ WinLibDevRegistry::WinLibDevRegistry(
 	//
 	// Set class instance values
 	//
-	strDomain = *strDomainName;
-	strApplication = *strApplicationName;
+	strHive				= *strHiveName;
+	strMainBranch		= "";
+	strDomain			= *strDomainName;
+	strApplication		= *strApplicationName;
+	strRegistryKeyValue = "";// ensure empty string for posibble result
+}
+
+//---------------------------------------------------------------------------------------
+//
+//	Constructor with
+//		- Hive
+//		- Main branch
+//		- Domainname
+//		- Application name
+//
+//---------------------------------------------------------------------------------------
+WinLibDevRegistry::WinLibDevRegistry(
+	string* strHiveName,
+	string* strMainBranchName,
+	string* strDomainName,
+	string* strApplicationName)
+{
+	//-----------------------------------------------------------------------------------
+	//
+	// Set class instance values
+	//
+	strHive				= *strHiveName;
+	strMainBranch		= *strMainBranchName;
+	strDomain			= *strDomainName;
+	strApplication		= *strApplicationName;
+	strRegistryKeyValue = "";// ensure empty string for posibble result
 
 }
 
@@ -70,17 +102,19 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 {
 	//-----------------------------------------------------------------------------------
 	//
-	//	Local variables
-	int
-		iRC =0;
-
-	//-----------------------------------------------------------------------------------
-	//
 	//Retrieve key value
 	//
-	iRC = GetRegistryKeyValue(strSection, strKey);
-	strRegKeyValue = strRegistryKeyValue;
-	return iRC;
+	if (GetRegistryKeyValue(strSection, strKey) == 0)
+	{
+		strRegKeyValue = strRegistryKeyValue;
+		return 1;
+	}
+	else
+	{
+		strRegKeyValue = "";
+		return 0;
+	}
+
 }
 
 //---------------------------------------------------------------------------------------
@@ -101,17 +135,19 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 {
 	//-----------------------------------------------------------------------------------
 	//
-	//	Local variables
-	int
-		iRC = 0;
-
-	//-----------------------------------------------------------------------------------
-	//
 	//Retrieve key value
 	//
-	iRC = GetRegistryKeyValue(strSection, strKey);
-	iRegKeyValue = iRegistryKeyValue;
-	return iRC;
+	if (GetRegistryKeyValue(strSection, strKey) == 0)
+	{
+		iRegKeyValue = iRegistryKeyValue;
+		return 1;
+	}
+	else
+	{
+		iRegKeyValue = 0;
+		return 0;
+	}
+
 }
 
 //---------------------------------------------------------------------------------------
@@ -166,6 +202,8 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 		strSubKey,
 		strKeyValue,
 		strRC = "";
+	HKEY
+		hkHive;
 	LPCWSTR
 		lpSubKey,
 		lpKey;
@@ -180,7 +218,7 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	//
 	//	Convert input strings to LPCSTR required in RegGetValue
 	//
-	strSubKey = "SOFTWARE\\" + strDomain + "\\" + strApplication;
+	strSubKey = strMainBranch + "\\" + strDomain + "\\" + strApplication;
 	if (strSection.length() > 0)
 	{
 		strSubKey = strSubKey + "\\" + strSection;
@@ -193,6 +231,27 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 
 	//-----------------------------------------------------------------------------------
 	//
+	//	Set hive value
+	//	Only HKEY_CURRENT_USER or HKEY_LOCAL_MACHINE hives are accepted
+	if ((strHive == "HKEY_CURRENT_USER")||(strHive == "HKEY_LOCAL_MACHINE"))
+	{
+		if (strHive == "HKEY_CURRENT_USER")
+		{
+			hkHive = HKEY_CURRENT_USER;
+		}
+		else
+		{
+			hkHive = HKEY_LOCAL_MACHINE;
+		}
+	}
+
+	else
+	{
+		return 1;
+	}
+
+	//-----------------------------------------------------------------------------------
+	//
 	//	Retrieve key value
 	//	- KeyValueDataType:
 	//		- REG_NONE = 0 
@@ -201,7 +260,7 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	//		- REG_DWORD = 4 (32-bit number)
 	//
 	if (RegGetValue(
-		HKEY_CURRENT_USER,
+		hkHive,
 		lpSubKey,
 		lpKey,
 		RRF_RT_ANY,

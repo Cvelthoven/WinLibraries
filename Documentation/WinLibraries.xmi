@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI verified="false" xmi.version="1.2" timestamp="2022-04-18T14:19:49" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
+<XMI verified="false" xmi.version="1.2" timestamp="2022-05-27T13:32:09" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -58,12 +58,21 @@
         <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uuXz5R1EaVeol" comment="-----------------------------------------------------------------------------------&#xa;&#xa;Constructors and destructor&#xa;" isOverride="false" name="WinLibRegistry" isInline="false" isVirtual="false"/>
         <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uwdBBDP56ok6u" isOverride="false" name="WinLibRegistry" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ubzUrQyj5UDG2" type="uZALVNiKAhOOk" value="" name="strHiveName"/>
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="uMAQXNCRSYbL6" type="uZALVNiKAhOOk" value="" name="strDomainName"/>
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="u6eI135SdkDA7" type="uZALVNiKAhOOk" value="" name="strApplicationName"/>
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
+        <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ugKDadnpMtY1G" isOverride="false" name="WinLibRegistry" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ufPf7df5oWZ4J" type="uZALVNiKAhOOk" value="" name="strHiveName"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uaf5xwjrWdude" type="uZALVNiKAhOOk" value="" name="strMainBranchName"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uHh55e32CiqR2" type="uZALVNiKAhOOk" value="" name="strDomainName"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u80J5Z980o8QF" type="uZALVNiKAhOOk" value="" name="strApplicationName"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
         <UML:Operation stereotype="destructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u9TqTGGXHUfxk" isOverride="false" name="~WinLibRegistry" isInline="false" isVirtual="false"/>
-        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="utCVcDV2Z6TMU" comment="-----------------------------------------------------------------------------------&#xd;&#xa;&#xa;Public methodes&#xd;&#xa;" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="utCVcDV2Z6TMU" comment="-----------------------------------------------------------------------------------&#xa;&#xa;Public methodes&#xa;" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
           <UML:Parameter kind="return" xmi.id="uSyqEDWSKqjIv" type="uWMepBJ2qg4UF"/>
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="ui1UZnI7cgUWy" type="umepfsxxE97FJ" value="" name="strSection"/>
@@ -87,7 +96,7 @@
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="uMLQUeis2HBB7" type="umepfsxxE97FJ" value="" name="strRegKeyValue"/>
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
-        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uiEsDpLYYgQmk" comment="-----------------------------------------------------------------------------------&#xd;&#xa;&#xa;Private methodes&#xd;&#xa;" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uiEsDpLYYgQmk" comment="-----------------------------------------------------------------------------------&#xa;&#xa;Private methodes&#xa;" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
           <UML:Parameter kind="return" xmi.id="uuoku1w25NkSx" type="uWMepBJ2qg4UF"/>
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="uukhMQGqa8Hhg" type="umepfsxxE97FJ" value="" name="strSection"/>
@@ -99,10 +108,10 @@
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello">
       <diagrams resolution="96">
-       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="WinLibRegistry - class diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="389" canvaswidth="908" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#f6f6f6" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffffc0" zoom="100" xmi.id="uCBW4Lvte85dP" documentation="" showscope="1" snapgrid="0" showatts="1" type="1">
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="WinLibRegistry - class diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="404" canvaswidth="1084" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#f6f6f6" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffffc0" zoom="100" xmi.id="uCBW4Lvte85dP" documentation="" showscope="1" snapgrid="0" showatts="1" type="1">
         <widgets>
          <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-2064" showattsigs="601" showstereotype="1" y="-1435" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uNgWNNOO5wkNR" width="177" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" xmi.id="u2Ymcmxyi9dFh" autoresize="1" showscope="1" height="67" showopsigs="601"/>
-         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-1752" showattsigs="601" showstereotype="1" y="-1226" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="u8lazcUQYwKWE" width="596" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" xmi.id="umAYV4NADpJl4" autoresize="1" showscope="1" height="180" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-1752" showattsigs="601" showstereotype="1" y="-1226" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="u8lazcUQYwKWE" width="772" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" xmi.id="umAYV4NADpJl4" autoresize="1" showscope="1" height="195" showopsigs="601"/>
         </widgets>
         <messages/>
         <associations/>
@@ -248,7 +257,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello">
-  <docsettings viewid="uCBW4Lvte85dP" uniqueid="u7Orj9a9mGbeY" documentation=""/>
+  <docsettings viewid="unRCj6BaYZoNG" uniqueid="uGS3MyT0GY02L" documentation=""/>
   <listview>
    <listitem open="1" type="800" id="Views">
     <listitem open="1" type="821" id="Component_View">
@@ -314,6 +323,7 @@
       <listitem open="0" type="814" id="uDkXlDUZA4bNm"/>
       <listitem open="0" type="815" id="uuXz5R1EaVeol"/>
       <listitem open="0" type="815" id="uwdBBDP56ok6u"/>
+      <listitem open="0" type="815" id="ugKDadnpMtY1G"/>
      </listitem>
      <listitem open="0" type="807" id="uCBW4Lvte85dP" label="WinLibRegistry - class diagram"/>
      <listitem open="0" type="809" id="unRCj6BaYZoNG" label="WinLibRegistry->SetRegistryKeyValue - activity diagram"/>

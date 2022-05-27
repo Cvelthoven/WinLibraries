@@ -48,6 +48,8 @@ void MainWindow::WinLibRegistry()
 		iRC;
 
 	string
+		strHive = "HKEY_CURRENT_USER",
+		strMainBranch = "SOFTWARE",
 		strDomain = "CVelthoven.com",
 		strApplication = "WinLibBuiltApp",
 		strSection = "Builtsection01",
@@ -59,7 +61,7 @@ void MainWindow::WinLibRegistry()
 	//
 	//	Create class instance
 	//
-	WinLibDevRegistry* clsRegistry = new WinLibDevRegistry(&strDomain, &strApplication);
+	WinLibDevRegistry* clsRegistry = new WinLibDevRegistry(&strHive, &strMainBranch, &strDomain, &strApplication);
 
 	//--------------------------------------------------------------------------------------
 	//
