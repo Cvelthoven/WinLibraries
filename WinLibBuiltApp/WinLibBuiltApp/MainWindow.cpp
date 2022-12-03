@@ -68,4 +68,14 @@ void MainWindow::WinLibRegistry()
 	//	Retrieve registry key
 	//
 	iRC = clsRegistry->GetRegistryKeyValue(strSection, strKey, strKeyValue);
+
+	//--------------------------------------------------------------------------------------
+	//
+	//	Update registry key
+	//
+	if (iRC == 1)
+	{
+//		iRC = clsRegistry->SetRegistryKeyValue(strSection, strKey, strKeyValue);
+	}
+
 }

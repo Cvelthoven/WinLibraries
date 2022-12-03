@@ -152,13 +152,13 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 
 //---------------------------------------------------------------------------------------
 //
-//	GetRegistryKeyValue
+//	SetRegistryKeyValue
 //	- input:
 //		- strSection
 //		- strKey
+//		- strRegKeyValue
 //	- output:
-//		- GetRegistryKeyValue
-//		- strRegistryKevValue
+//		- SetRegistryKeyValue
 //
 //---------------------------------------------------------------------------------------
 int SetRegistryKeyValue(
@@ -166,6 +166,16 @@ int SetRegistryKeyValue(
 	const string& strKey,
 	const string& strRegKeyValue)
 {
+	int iRegistryValueFound = 0;// set to 1 if the registry value is found
+
+	string strRegOriginalValue = "";// current registry value if found
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Retrieve original registry value if exists
+	//
+
+
 
 	return 0;
 }
