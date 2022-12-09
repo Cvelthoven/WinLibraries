@@ -194,6 +194,10 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 
 		}
 		else
+			//---------------------------------------------------------------------------
+			//
+			//	Current key value is equel to the new value -> no action required
+			//
 			return 0;
 
 	return 0;
