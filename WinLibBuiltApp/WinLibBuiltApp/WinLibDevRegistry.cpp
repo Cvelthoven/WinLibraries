@@ -176,11 +176,25 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 	//
 	if (GetRegistryKeyValue(strSection, strKey) == 0)
 	{
-		iRegistryValueFound = iRegistryKeyValue;
-		return 1;
+		strRegOriginalValue = strRegistryKeyValue;
+		iRegistryValueFound = 1;
+	}
+	else
+	{
+		strRegOriginalValue = "";
 	}
 
+	//-----------------------------------------------------------------------------------
+	//
+	//	Compare new value with original value if found
+	//
+	if ((iRegistryValueFound == 1)&&
+		(strRegOriginalValue != strRegistryKeyValue))
+		{
 
+		}
+		else
+			return 0;
 
 	return 0;
 }

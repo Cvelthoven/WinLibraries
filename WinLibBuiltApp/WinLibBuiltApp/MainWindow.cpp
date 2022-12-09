@@ -75,7 +75,7 @@ void MainWindow::WinLibRegistry()
 	//
 	if (iRC == 1)
 	{
-//		iRC = clsRegistry->SetRegistryKeyValue(strSection, strKey, strKeyValue);
+		iRC = clsRegistry->SetRegistryKeyValue(strSection, strKey, strKeyValue);
 	}
 
 }
