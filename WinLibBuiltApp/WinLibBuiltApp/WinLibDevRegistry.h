@@ -14,6 +14,8 @@
 //---------------------------------------------------------------------------------------
 using namespace std;
 #include <string>
+#include <Windows.h>
+
 //---------------------------------------------------------------------------------------
 //
 //	MainWindow class definitions
@@ -57,6 +59,12 @@ private:
 	int GetRegistryKeyValue(
 		const string& strSection,
 		const string& strKey);
+	int SetRegistryKeyValue(
+		const string& strSection,
+		const string& strKey);
+	void ConvertStringToLPCSTR(
+		const string& strSection,
+		const string& strKey);
 
 	int
 		iRegistryKeyValue;// possible value of the key only used when the key is an integer
@@ -67,5 +75,13 @@ private:
 		strDomain,			// name of the domain of the application
 		strApplication,		// name of the application
 		strRegistryKeyValue;// possible value of the key only used when the key is a string
+
+	HKEY
+		hkHive;
+
+	LPCWSTR
+		lpSubKey,
+		lpKey;
+
 };
 
