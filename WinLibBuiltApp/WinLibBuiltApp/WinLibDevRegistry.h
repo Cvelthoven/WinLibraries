@@ -64,7 +64,9 @@ private:
 		const string& strKey);
 	void ConvertStringToLPCSTR(
 		const string& strSection,
-		const string& strKey);
+		const string& strKey,
+		LPCWSTR&  lpSubKey,
+		LPCWSTR& lpKey);
 
 	int
 		iRegistryKeyValue;// possible value of the key only used when the key is an integer
@@ -79,9 +81,9 @@ private:
 	HKEY
 		hkHive;
 
-	LPCWSTR
-		lpSubKey,
-		lpKey;
+//	LPCWSTR
+//		lpSubKey,
+//		lpKey;
 
 };
 

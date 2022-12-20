@@ -24,6 +24,12 @@ using namespace std;
 //---------------------------------------------------------------------------------------
 WinLibDevRegistry::WinLibDevRegistry()
 {
+	strHive = "";
+	strMainBranch = "";
+	strDomain = "";
+	strApplication = "";
+	strRegistryKeyValue = "";// ensure empty string for posibble result
+	hkHive = 0;// set hive value to no hive value
 
 }
 
@@ -276,20 +282,32 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 		strKeyValue,
 		strRC = "";
 
-	//--------------------------------------------------------------------------------------
-	//
-	//	Convert strings to LPCWSTR
-	//
-	ConvertStringToLPCSTR(strSection, strKey);
+	LPCWSTR
+		lpSubKey =0,
+		lpKey = 0;
+
 
 	//-----------------------------------------------------------------------------------
 	//
 	//	Check if hive value is set
 	//	Only HKEY_CURRENT_USER or HKEY_LOCAL_MACHINE hives are accepted
-	if (hkHive == 0)
+	if ((hkHive != HKEY_CURRENT_USER) && (hkHive != HKEY_CURRENT_USER))
 	{
 		return 1;
 	}
+
+	//--------------------------------------------------------------------------------------
+	//
+	//	Convert strings to LPCWSTR
+	//
+//	ConvertStringToLPCSTR(strSection, strKey, *lpSubKey, lpKey);
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Set default value when key is not found
+	strRegistryKeyValue = strRC;
+	iRegistryKeyValue = 0;
+
 
 	//-----------------------------------------------------------------------------------
 	//
@@ -308,7 +326,7 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 		&KeyValueDataType,
 		(PVOID)&KeyValue,
 		&KeyValueLen
-	) == ERROR_SUCCESS)
+			) == ERROR_SUCCESS)
 
 		//-----------------------------------------------------------------------------------
 		//
@@ -410,7 +428,9 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 //---------------------------------------------------------------------------------------
 void WinLibDevRegistry::ConvertStringToLPCSTR(
 	const string& strSection,
-	const string& strKey)
+	const string& strKey,
+	LPCWSTR& lpSubKey,
+	LPCWSTR& lpKey)
 {
 	//-----------------------------------------------------------------------------------
 	//
@@ -419,15 +439,7 @@ void WinLibDevRegistry::ConvertStringToLPCSTR(
 		strSubKey,
 		strKeyValue,
 		strRC = "";
-	LPCWSTR
-		lpSubKey,
-		lpKey;
 
-	//-----------------------------------------------------------------------------------
-	//
-	//	Set default value when key is not found
-	strRegistryKeyValue = strRC;
-	iRegistryKeyValue = 0;
 
 	//-----------------------------------------------------------------------------------
 	//
