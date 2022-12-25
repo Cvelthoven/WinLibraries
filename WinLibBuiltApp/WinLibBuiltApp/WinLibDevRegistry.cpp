@@ -29,7 +29,6 @@ WinLibDevRegistry::WinLibDevRegistry()
 	strDomain = "";
 	strApplication = "";
 	strRegistryKeyValue = "";// ensure empty string for posibble result
-	hkHive = 0;// set hive value to no hive value
 
 }
 
@@ -56,26 +55,7 @@ WinLibDevRegistry::WinLibDevRegistry(
 	strDomain			= *strDomainName;
 	strApplication		= *strApplicationName;
 	strRegistryKeyValue = "";// ensure empty string for posibble result
-	hkHive				= 0;// set hive value to no hive value
 
-	//-----------------------------------------------------------------------------------
-	//
-	//	Set hkhive
-	//	Only HKEY_CURRENT_USER or HKEY_LOCAL_MACHINE hives are accepted
-	//
-	if ((strHive == "HKEY_CURRENT_USER") || (strHive == "HKEY_LOCAL_MACHINE"))
-	{
-		if (strHive == "HKEY_CURRENT_USER")
-		{
-			hkHive = HKEY_CURRENT_USER;
-		}
-		else
-		{
-			hkHive = HKEY_LOCAL_MACHINE;
-		}
-	}
-	else
-		hkHive = 0;
 }
 
 //---------------------------------------------------------------------------------------
@@ -102,26 +82,6 @@ WinLibDevRegistry::WinLibDevRegistry(
 	strDomain			= *strDomainName;
 	strApplication		= *strApplicationName;
 	strRegistryKeyValue = "";// ensure empty string for posibble result
-	hkHive				= 0;// set hive value to no hive value
-
-	//-----------------------------------------------------------------------------------
-	//
-	//	Set hkhive
-	//	Only HKEY_CURRENT_USER or HKEY_LOCAL_MACHINE hives are accepted
-	//
-	if ((strHive == "HKEY_CURRENT_USER") || (strHive == "HKEY_LOCAL_MACHINE"))
-	{
-		if (strHive == "HKEY_CURRENT_USER")
-		{
-			hkHive = HKEY_CURRENT_USER;
-		}
-		else
-		{
-			hkHive = HKEY_LOCAL_MACHINE;
-		}
-	}
-	else
-		hkHive = 0;
 
 }
 
@@ -282,25 +242,47 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 		strKeyValue,
 		strRC = "";
 
+	HKEY
+		hkHive;
+
 	LPCWSTR
-		lpSubKey =0,
+		lpSubKey,
 		lpKey = 0;
 
-
-	//-----------------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------------
 	//
-	//	Check if hive value is set
-	//	Only HKEY_CURRENT_USER or HKEY_LOCAL_MACHINE hives are accepted
-	if ((hkHive != HKEY_CURRENT_USER) && (hkHive != HKEY_CURRENT_USER))
+	//	Ensure that the correct hive is used and set the hive key
+	//
+	if ((strHive == "HKEY_CURRENT_USER") || (strHive == "HKEY_LOCAL_MACHINE"))
 	{
-		return 1;
+		if (strHive == "HKEY_CURRENT_USER")
+		{
+			hkHive = HKEY_CURRENT_USER;
+		}
+		else
+		{
+			hkHive = HKEY_LOCAL_MACHINE;
+		}
 	}
+	else
+		hkHive = 0;
+
 
 	//--------------------------------------------------------------------------------------
 	//
 	//	Convert strings to LPCWSTR
 	//
-//	ConvertStringToLPCSTR(strSection, strKey, *lpSubKey, lpKey);
+	strSubKey = strMainBranch + "\\" + strDomain + "\\" + strApplication;
+	if (strSection.length() > 0)
+	{
+		strSubKey = strSubKey + "\\" + strSection;
+	}
+	std::wstring temp = std::wstring(strSubKey.begin(), strSubKey.end());
+	lpSubKey = temp.c_str();
+	lpSubKey = temp.c_str();
+	std::wstring temp2 = std::wstring(strKey.begin(), strKey.end());
+	lpKey = temp2.c_str();
+
 
 	//-----------------------------------------------------------------------------------
 	//
@@ -381,28 +363,6 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 	const string& strSection,
 	const string& strKey)
 {
-	//-----------------------------------------------------------------------------------
-	//
-	//	Set hive value
-	//	Only HKEY_CURRENT_USER or HKEY_LOCAL_MACHINE hives are accepted
-	if ((strHive == "HKEY_CURRENT_USER") || (strHive == "HKEY_LOCAL_MACHINE"))
-	{
-		if (strHive == "HKEY_CURRENT_USER")
-		{
-			hkHive = HKEY_CURRENT_USER;
-		}
-		else
-		{
-			hkHive = HKEY_LOCAL_MACHINE;
-		}
-	}
-
-	else
-	{
-		return 1;
-	}
-
-
 
 
 	//-----------------------------------------------------------------------------------
@@ -418,42 +378,4 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 	return 0;
 }
 
-//---------------------------------------------------------------------------------------
-//
-//	ConvertStringToLPCSTR
-//	- input:
-//		- strSection
-//		- strKey
-//
-//---------------------------------------------------------------------------------------
-void WinLibDevRegistry::ConvertStringToLPCSTR(
-	const string& strSection,
-	const string& strKey,
-	LPCWSTR& lpSubKey,
-	LPCWSTR& lpKey)
-{
-	//-----------------------------------------------------------------------------------
-	//
-	//	Local variables
-	string
-		strSubKey,
-		strKeyValue,
-		strRC = "";
 
-
-	//-----------------------------------------------------------------------------------
-	//
-	//	Convert input strings to LPCSTR required in RegGetValue
-	//
-	strSubKey = strMainBranch + "\\" + strDomain + "\\" + strApplication;
-	if (strSection.length() > 0)
-	{
-		strSubKey = strSubKey + "\\" + strSection;
-	}
-
-	std::wstring temp = std::wstring(strSubKey.begin(), strSubKey.end());
-	lpSubKey = temp.c_str();
-	std::wstring temp2 = std::wstring(strKey.begin(), strKey.end());
-	lpKey = temp2.c_str();
-
-}
