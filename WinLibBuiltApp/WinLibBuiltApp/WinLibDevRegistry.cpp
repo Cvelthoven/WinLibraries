@@ -267,7 +267,6 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	else
 		hkHive = 0;
 
-
 	//--------------------------------------------------------------------------------------
 	//
 	//	Convert strings to LPCWSTR
@@ -279,17 +278,15 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	}
 	std::wstring temp = std::wstring(strSubKey.begin(), strSubKey.end());
 	lpSubKey = temp.c_str();
-	lpSubKey = temp.c_str();
+
 	std::wstring temp2 = std::wstring(strKey.begin(), strKey.end());
 	lpKey = temp2.c_str();
-
 
 	//-----------------------------------------------------------------------------------
 	//
 	//	Set default value when key is not found
 	strRegistryKeyValue = strRC;
 	iRegistryKeyValue = 0;
-
 
 	//-----------------------------------------------------------------------------------
 	//
@@ -377,5 +374,3 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 
 	return 0;
 }
-
-

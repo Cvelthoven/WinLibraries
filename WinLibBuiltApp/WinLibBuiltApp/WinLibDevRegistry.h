@@ -63,7 +63,6 @@ private:
 		const string& strSection,
 		const string& strKey);
 
-
 	int
 		iRegistryKeyValue;// possible value of the key only used when the key is an integer
 
