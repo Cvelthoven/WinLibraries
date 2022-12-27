@@ -59,6 +59,7 @@ private:
 	int GetRegistryKeyValue(
 		const string& strSection,
 		const string& strKey);
+	void InitClass();
 	int SetRegistryKeyValue(
 		const string& strSection,
 		const string& strKey);
@@ -71,7 +72,8 @@ private:
 		strMainBranch,		// name of the mainbranch 
 		strDomain,			// name of the domain of the application
 		strApplication,		// name of the application
-		strRegistryKeyValue;// possible value of the key only used when the key is a string
+		strRegistryKeyValue,// possible value of the key only used when the key is a string
+		strRegistryRootPath;// Key path to application registry root without hive
 
 //	LPCWSTR
 //		lpSubKey,

@@ -24,11 +24,23 @@ using namespace std;
 //---------------------------------------------------------------------------------------
 WinLibDevRegistry::WinLibDevRegistry()
 {
+	//-----------------------------------------------------------------------------------
+	//
+	// Set class instance values
+	//
+	//-----------------------------------------------------------------------------------
 	strHive = "";
 	strMainBranch = "";
 	strDomain = "";
 	strApplication = "";
 	strRegistryKeyValue = "";// ensure empty string for posibble result
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Initialize class values
+	//
+	//-----------------------------------------------------------------------------------
+	InitClass();
 
 }
 
@@ -50,11 +62,19 @@ WinLibDevRegistry::WinLibDevRegistry(
 	//
 	// Set class instance values
 	//
+	//-----------------------------------------------------------------------------------
 	strHive				= *strHiveName;
 	strMainBranch		= "";
 	strDomain			= *strDomainName;
 	strApplication		= *strApplicationName;
 	strRegistryKeyValue = "";// ensure empty string for posibble result
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Initialize class values
+	//
+	//-----------------------------------------------------------------------------------
+	InitClass();
 
 }
 
@@ -77,11 +97,19 @@ WinLibDevRegistry::WinLibDevRegistry(
 	//
 	// Set class instance values
 	//
+	//-----------------------------------------------------------------------------------
 	strHive				= *strHiveName;
 	strMainBranch		= *strMainBranchName;
 	strDomain			= *strDomainName;
 	strApplication		= *strApplicationName;
 	strRegistryKeyValue = "";// ensure empty string for posibble result
+
+	//-----------------------------------------------------------------------------------
+//
+//	Initialize class values
+//
+//-----------------------------------------------------------------------------------
+	InitClass();
 
 }
 
@@ -90,6 +118,8 @@ WinLibDevRegistry::WinLibDevRegistry(
 //
 //	Public Functions
 //
+//---------------------------------------------------------------------------------------
+//	GetRegistryKeyValue functions
 //---------------------------------------------------------------------------------------
 //
 //	GetRegistryKeyValue
@@ -157,6 +187,8 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 }
 
 //---------------------------------------------------------------------------------------
+//	SetRegistryKeyValue functions
+//---------------------------------------------------------------------------------------
 //
 //	SetRegistryKeyValue
 //	- input:
@@ -195,7 +227,7 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 	//	Compare new value with original value if found
 	//
 	if ((iRegistryValueFound == 1)&&
-		(strRegOriginalValue != strRegistryKeyValue))
+		(strRegOriginalValue != strRegKeyValue))
 		{
 
 		}
@@ -271,12 +303,11 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	//
 	//	Convert strings to LPCWSTR
 	//
-	strSubKey = strMainBranch + "\\" + strDomain + "\\" + strApplication;
 	if (strSection.length() > 0)
 	{
-		strSubKey = strSubKey + "\\" + strSection;
+		strRegistryRootPath = strRegistryRootPath + "\\" + strSection;
 	}
-	std::wstring temp = std::wstring(strSubKey.begin(), strSubKey.end());
+	std::wstring temp = std::wstring(strRegistryRootPath.begin(), strRegistryRootPath.end());
 	lpSubKey = temp.c_str();
 
 	std::wstring temp2 = std::wstring(strKey.begin(), strKey.end());
@@ -345,6 +376,35 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 
 	return 1;
 }
+
+//---------------------------------------------------------------------------------------
+//
+//	SetRegistryKeyValue
+//	- input:
+//
+// --------------------------------------------------------------------------------------
+void WinLibDevRegistry::InitClass()
+{
+	//-----------------------------------------------------------------------------------
+	//
+	//	Set string to key without hive and key
+	//
+	//-----------------------------------------------------------------------------------
+	strRegistryRootPath = "";
+	if (strMainBranch.length() > 0)
+	{
+		strRegistryRootPath = strMainBranch;
+	}
+	if (strDomain.length() > 0)
+	{
+		strRegistryRootPath = strRegistryRootPath + "\\" + strDomain;
+	}
+	if (strApplication.length() > 0)
+	{
+		strRegistryRootPath = strRegistryRootPath + "\\" + strApplication;
+	}
+}
+
 
 //---------------------------------------------------------------------------------------
 //
