@@ -264,11 +264,15 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	//-----------------------------------------------------------------------------------
 	//
 	//	Local variables
-	wchar_t
-		KeyValue[255];
+	//wchar_t
+		//KeyValue[255];
 	DWORD
-		KeyValueLen = sizeof(KeyValue),
+		KeyValueLen,
 		KeyValueDataType;
+
+	int
+		iRC = 1;
+
 	string
 		strSubKey,
 		strKeyValue,
@@ -321,6 +325,44 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 
 	//-----------------------------------------------------------------------------------
 	//
+	//	Open the registry key
+	//
+	if (RegOpenKeyEx(
+		hkHive,
+		lpSubKey,
+		0,
+		KEY_READ,
+		&hkHive
+			) != ERROR_SUCCESS)
+	{
+		return 1;
+	}
+	//-----------------------------------------------------------------------------------
+	//
+	//	Get the size of registry key
+	//
+	if (RegGetValue(
+		hkHive,
+		NULL,
+		lpKey,
+		RRF_RT_REG_SZ,
+		&KeyValueDataType,
+		NULL,
+		&KeyValueLen
+			) != ERROR_SUCCESS)
+	{
+		RegCloseKey(hkHive);
+		return 1;
+	}
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Allocate memory for result
+	LPWSTR KeyValue = (LPWSTR)malloc(KeyValueLen);
+
+
+	//-----------------------------------------------------------------------------------
+	//
 	//	Retrieve key value
 	//	- KeyValueDataType:
 	//		- REG_NONE = 0 
@@ -330,11 +372,11 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	//
 	if (RegGetValue(
 		hkHive,
-		lpSubKey,
+		NULL,
 		lpKey,
-		RRF_RT_ANY,
+		RRF_RT_REG_SZ,
 		&KeyValueDataType,
-		(PVOID)&KeyValue,
+		KeyValue,
 		&KeyValueLen
 			) == ERROR_SUCCESS)
 
@@ -348,6 +390,7 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 		//	Return the value based on type
 		char strTemp[255];
 		char DefChar = ' ';
+		iRC = 1;
 		switch (KeyValueDataType)
 		{
 			//-------------------------------------------------------------------------------
@@ -356,25 +399,33 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 		case REG_SZ:
 			WideCharToMultiByte(CP_ACP, 0, KeyValue, -1, strTemp, 255, &DefChar, NULL);
 			strRegistryKeyValue = strTemp;
-			return 0;
+			iRC = 0;
 			break;
 			//-------------------------------------------------------------------------------
 			//
 			//	Return long value
 		case REG_DWORD:
 			iRegistryKeyValue = KeyValue[0];
-			return 0;
+			iRC = 0;
 			break;
 		default:
 			break;
 		}
+
+		//-------------------------------------------------------------------------------------
+		//
+		//	Close registry key 
+		//	Cleanup
+		//
+		RegCloseKey(hkHive);
+		free(KeyValue);
 	}
-	//-----------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------------
 	//
 	//	Return empty string as error result
 	//
 
-	return 1;
+	return iRC;
 }
 
 //---------------------------------------------------------------------------------------
