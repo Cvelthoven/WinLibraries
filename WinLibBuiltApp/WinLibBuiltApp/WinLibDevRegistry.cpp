@@ -275,6 +275,7 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 
 	string
 		strSubKey,
+		strKeyPath = "",	// Key path to the key with the hiv
 		strKeyValue,
 		strRC = "";
 
@@ -309,9 +310,9 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	//
 	if (strSection.length() > 0)
 	{
-		strRegistryRootPath = strRegistryRootPath + "\\" + strSection;
+		strKeyPath = strRegistryRootPath + "\\" + strSection;
 	}
-	std::wstring temp = std::wstring(strRegistryRootPath.begin(), strRegistryRootPath.end());
+	std::wstring temp = std::wstring(strKeyPath.begin(), strKeyPath.end());
 	lpSubKey = temp.c_str();
 
 	std::wstring temp2 = std::wstring(strKey.begin(), strKey.end());
@@ -328,12 +329,12 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	//	Open the registry key
 	//
 	if (RegOpenKeyEx(
-		hkHive,
-		lpSubKey,
-		0,
-		KEY_READ,
-		&hkHive
-			) != ERROR_SUCCESS)
+	hkHive,
+	lpSubKey,
+	0,
+	KEY_READ,
+	&hkHive
+		) != ERROR_SUCCESS)
 	{
 		return 1;
 	}
