@@ -196,7 +196,8 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 //		- strKey
 //		- strRegKeyValue
 //	- output:
-//		- SetRegistryKeyValue
+//		- SetRegistryKeyValue:
+//			0: successfull value update (including possible creation of key)
 //
 //---------------------------------------------------------------------------------------
 int WinLibDevRegistry::SetRegistryKeyValue(
@@ -204,7 +205,8 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 	const string& strKey,
 	const string& strRegKeyValue)
 {
-	int iRegistryValueFound = 0;// set to 1 if the registry value is found
+	int iRC = 0,				// return value
+		iRegistryValueFound = 0;// set to 1 if the registry value is found
 
 	string strRegOriginalValue = "";// current registry value if found
 
@@ -229,16 +231,24 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 	if ((iRegistryValueFound == 1)&&
 		(strRegOriginalValue != strRegKeyValue))
 		{
-
+			switch (UpdateRegistryKeyValue(strSection, strKey, strRegistryKeyValue))
+			{
+				case 0:
+					iRC = 0;
+					break;
+				default:
+					iRC = 0;
+					break;
+			}
 		}
 		else
 			//---------------------------------------------------------------------------
 			//
 			//	Current key value is equel to the new value -> no action required
 			//
-			return 0;
+			iRC = 0;
 
-	return 0;
+	return iRC;
 }
 
 
@@ -264,163 +274,152 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	//-----------------------------------------------------------------------------------
 	//
 	//	Local variables
-	//wchar_t
-		//KeyValue[255];
-	DWORD
-		KeyValueLen,
-		KeyValueDataType;
+	//DWORD
+	//	KeyValueLen = 0,
+	//	KeyValueDataType = 0;
 
 	int
 		iRC = 1;
 
-	string
-		strSubKey,
-		strKeyPath = "",	// Key path to the key with the hiv
-		strKeyValue,
-		strRC = "";
+//	string
+//		strSubKey,
+//		strKeyPath = "",	// Key path to the key with the hiv
+//		strKeyValue,
+//		strRC = "";
+//
+////	HKEY
+//		hkHive;
 
-	HKEY
-		hkHive;
+	//LPCWSTR
+	//	lpSubKey,
+	//	lpKey = 0;
 
-	LPCWSTR
-		lpSubKey,
-		lpKey = 0;
-
-	//--------------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
 	//
-	//	Ensure that the correct hive is used and set the hive key
+	//	Init instance information
 	//
-	if ((strHive == "HKEY_CURRENT_USER") || (strHive == "HKEY_LOCAL_MACHINE"))
+	if (InitGetOrSetRegistryValue(strSection, strKey) != 0)
 	{
-		if (strHive == "HKEY_CURRENT_USER")
-		{
-			hkHive = HKEY_CURRENT_USER;
-		}
-		else
-		{
-			hkHive = HKEY_LOCAL_MACHINE;
-		}
+		return 1;
 	}
-	else
-		hkHive = 0;
 
-	//--------------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
 	//
 	//	Convert strings to LPCWSTR
 	//
-	if (strSection.length() > 0)
-	{
-		strKeyPath = strRegistryRootPath + "\\" + strSection;
-	}
-	std::wstring temp = std::wstring(strKeyPath.begin(), strKeyPath.end());
-	lpSubKey = temp.c_str();
+//	StringToLPCWSTR(strRegistryFullPath);
+////	std::wstring temp = std::wstring(strKeyPath.begin(), strKeyPath.end());
+////	lpSubKey = temp.c_str();
+//
+//	std::wstring temp2 = std::wstring(strKey.begin(), strKey.end());
+//	lpKey = temp2.c_str();
+//
+////	LPCWSTR lpSubKey = StringToLPCWSTR(strRegistryRootPath, strSection);
+////	LPCWSTR lpKey = StringToLPCWSTR(strKey);
+//
+//	//-----------------------------------------------------------------------------------
+//	//
+//	//	Set default value when key is not found
+//	strRegistryKeyValue = strRC;
+//	iRegistryKeyValue = 0;
+//
+	////-----------------------------------------------------------------------------------
+	////
+	////	Open the registry key
+	////
+	//if (RegOpenKeyEx(
+	//		hkHive,
+	//		lpSubKey,
+	//		0,
+	//		KEY_READ,
+	//		&hkHive
+	//	) != ERROR_SUCCESS)
+	//{
+	//	return 1;
+	//}
+	////-----------------------------------------------------------------------------------
+	////
+	////	Get the size of registry key
+	////
+	//if (RegGetValue(
+	//		hkHive,
+	//		NULL,
+	//		lpKey,
+	//		RRF_RT_REG_SZ,
+	//		&KeyValueDataType,
+	//		NULL,
+	//		&KeyValueLen
+	//	) != ERROR_SUCCESS)
+	//{
+	//	RegCloseKey(hkHive);
+	//	return 1;
+	//}
 
-	std::wstring temp2 = std::wstring(strKey.begin(), strKey.end());
-	lpKey = temp2.c_str();
-
-	//-----------------------------------------------------------------------------------
-	//
-	//	Set default value when key is not found
-	strRegistryKeyValue = strRC;
-	iRegistryKeyValue = 0;
-
-	//-----------------------------------------------------------------------------------
-	//
-	//	Open the registry key
-	//
-	if (RegOpenKeyEx(
-	hkHive,
-	lpSubKey,
-	0,
-	KEY_READ,
-	&hkHive
-		) != ERROR_SUCCESS)
-	{
-		return 1;
-	}
-	//-----------------------------------------------------------------------------------
-	//
-	//	Get the size of registry key
-	//
-	if (RegGetValue(
-		hkHive,
-		NULL,
-		lpKey,
-		RRF_RT_REG_SZ,
-		&KeyValueDataType,
-		NULL,
-		&KeyValueLen
-			) != ERROR_SUCCESS)
-	{
-		RegCloseKey(hkHive);
-		return 1;
-	}
-
-	//-----------------------------------------------------------------------------------
-	//
-	//	Allocate memory for result
-	LPWSTR KeyValue = (LPWSTR)malloc(KeyValueLen);
+	////-----------------------------------------------------------------------------------
+	////
+	////	Allocate memory for result
+	//LPWSTR KeyValue = (LPWSTR)malloc(KeyValueLen);
 
 
-	//-----------------------------------------------------------------------------------
-	//
-	//	Retrieve key value
-	//	- KeyValueDataType:
-	//		- REG_NONE = 0 
-	//		- REG_SZ = 1 (null terminated string)
-	//		- REG_BINARY = 3
-	//		- REG_DWORD = 4 (32-bit number)
-	//
-	if (RegGetValue(
-		hkHive,
-		NULL,
-		lpKey,
-		RRF_RT_REG_SZ,
-		&KeyValueDataType,
-		KeyValue,
-		&KeyValueLen
-			) == ERROR_SUCCESS)
+	////-----------------------------------------------------------------------------------
+	////
+	////	Retrieve key value
+	////	- KeyValueDataType:
+	////		- REG_NONE = 0 
+	////		- REG_SZ = 1 (null terminated string)
+	////		- REG_BINARY = 3
+	////		- REG_DWORD = 4 (32-bit number)
+	////
+	//if (RegGetValue(
+	//	hkHive,
+	//	NULL,
+	//	lpKey,
+	//	RRF_RT_REG_SZ,
+	//	&KeyValueDataType,
+	//	KeyValue,
+	//	&KeyValueLen
+	//		) == ERROR_SUCCESS)
 
-		//-----------------------------------------------------------------------------------
-		//
-		//	Return value of key
-		//
-	{
-		//-------------------------------------------------------------------------------
-		//
-		//	Return the value based on type
-		char strTemp[255];
-		char DefChar = ' ';
-		iRC = 1;
-		switch (KeyValueDataType)
-		{
-			//-------------------------------------------------------------------------------
-			//
-			//	Return string value
-		case REG_SZ:
-			WideCharToMultiByte(CP_ACP, 0, KeyValue, -1, strTemp, 255, &DefChar, NULL);
-			strRegistryKeyValue = strTemp;
-			iRC = 0;
-			break;
-			//-------------------------------------------------------------------------------
-			//
-			//	Return long value
-		case REG_DWORD:
-			iRegistryKeyValue = KeyValue[0];
-			iRC = 0;
-			break;
-		default:
-			break;
-		}
+	//	//-----------------------------------------------------------------------------------
+	//	//
+	//	//	Return value of key
+	//	//
+	//{
+	//	//-------------------------------------------------------------------------------
+	//	//
+	//	//	Return the value based on type
+	//	char strTemp[255];
+	//	char DefChar = ' ';
+	//	iRC = 1;
+	//	switch (KeyValueDataType)
+	//	{
+	//		//-------------------------------------------------------------------------------
+	//		//
+	//		//	Return string value
+	//	case REG_SZ:
+	//		WideCharToMultiByte(CP_ACP, 0, KeyValue, -1, strTemp, 255, &DefChar, NULL);
+	//		strRegistryKeyValue = strTemp;
+	//		iRC = 0;
+	//		break;
+	//		//-------------------------------------------------------------------------------
+	//		//
+	//		//	Return long value
+	//	case REG_DWORD:
+	//		iRegistryKeyValue = KeyValue[0];
+	//		iRC = 0;
+	//		break;
+	//	default:
+	//		break;
+	//	}
 
-		//-------------------------------------------------------------------------------------
-		//
-		//	Close registry key 
-		//	Cleanup
-		//
-		RegCloseKey(hkHive);
-		free(KeyValue);
-	}
+	//	//-------------------------------------------------------------------------------------
+	//	//
+	//	//	Close registry key 
+	//	//	Cleanup
+	//	//
+	//	RegCloseKey(hkHive);
+	//	free(KeyValue);
+	//}
 	//-----------------------------------------------------------------------------------------
 	//
 	//	Return empty string as error result
@@ -457,13 +456,60 @@ void WinLibDevRegistry::InitClass()
 	}
 }
 
+int WinLibDevRegistry::InitGetOrSetRegistryValue(
+	const string& strSection,
+	const string& strKey)
+{
+	//-----------------------------------------------------------------------------------
+	//
+	//	Copy strSection to strSectionName
+	//	Copy strKey to strKeyName
+	//	Set strRegistryFullPath
+	//
+	strRegistryFullPath = strRegistryRootPath;
+	if (strSection.length() > 0)
+	{
+		strSectionName = strSection;
+		strRegistryFullPath = strRegistryRootPath + "\\" + strSection;
+	}
+	else
+	{
+		strSectionName = "";
+	}
+	if (strKey.length() > 0)
+	{
+		strKeyName = strKey;
+	}
+	else
+	{
+		strKeyName = "";
+	}
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Ensure that the correct hive is used and set the hive key
+	//
+	if ((strHive == "HKEY_CURRENT_USER") || (strHive == "HKEY_LOCAL_MACHINE"))
+	{
+		if (strHive == "HKEY_CURRENT_USER")
+		{
+			hkHive = HKEY_CURRENT_USER;
+		}
+		else
+		{
+			hkHive = HKEY_LOCAL_MACHINE;
+		}
+	}
+
+
+	return 1;
+}
+
 
 //---------------------------------------------------------------------------------------
 //
 //	SetRegistryKeyValue
 //	- input:
-//		- strAppDomain
-//		- strAppName
 //		- strSection
 //		- strKey
 //
@@ -486,3 +532,111 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 
 	return 0;
 }
+
+//---------------------------------------------------------------------------------------
+//
+//	UpdateRegistryKeyValue
+//	- input:
+//		- strKeyPath	: full path to registry key without the hive
+//		- strKey		: registry key name
+//		- strNewKeyValue: new string value
+//	- output:
+//		- UpdateRegistryKeyValue:
+//			- 0: update value succesful
+//
+//---------------------------------------------------------------------------------------
+int WinLibDevRegistry::UpdateRegistryKeyValue(
+	const string& strKeyPath,
+	const string& strKey,
+	const string& strNewKeyValue)
+{
+	int iRC = 0;// return code
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Open key
+	//
+
+	return 0;
+}
+
+//---------------------------------------------------------------------------------------
+//
+//	LPCWSTR StringToLPCWSTR
+//
+//	Convert strings to LPCWSTR
+//
+//	Input:
+//		- strInput: first part of the concatenated string
+//			- may be an emptpy strings
+//	Output:
+//		- StringToLPCWSTR: the converted stringLPCWSTR StringToLPCWSTR(
+void StringToLPCWSTR(
+	const std::string& strInput)
+{
+	//--------------------------------------------------------------------------------------
+	// 
+	//	local variables
+	// 
+
+	LPCWSTR lpResult;
+
+	//--------------------------------------------------------------------------------------
+	//	Get size of input string buffer
+	//
+	string strTemp = strInput;
+	std::wstring temp = std::wstring(strInput.begin(), strInput.end());
+	lpResult = temp.c_str();
+
+//	iStrLen = MultiByteToWideChar(CP_UTF8, 0, strTemp.c_str(), -1, nullptr, 0);
+//	if (iStrLen == 0)
+//	{
+//		return nullptr;
+//	}
+
+	//-----------------------------------------------------------------------------------
+	// 
+	// Convert input string to LPCWSTR
+	// 
+//	auto buffer = new wchar_t(iStrLen);
+//	MultiByteToWideChar(CP_UTF8, 0, strTemp.c_str(), -1, buffer, iStrLen);
+//	return buffer;
+
+}
+
+
+//	code example from ChatGPT
+// 
+// #include <Windows.h>
+//#include <string>
+//
+//// Converts a std::string to a LPCWSTR
+//LPCWSTR StringToLPCWSTR(const std::string& str)
+//{
+//	int bufferLen = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, nullptr, 0);
+//	if (bufferLen == 0) {
+//		return nullptr;
+//	}
+//
+//	auto buffer = new wchar_t[bufferLen];
+//	MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, buffer, bufferLen);
+//
+//	return buffer;
+//}
+//
+//int main()
+//{
+//	std::string myString = "Hello, World!";
+//
+//	LPCWSTR myLpcwstr = StringToLPCWSTR(myString);
+//
+//	// Use the myLpcwstr pointer here...
+//
+//	// Remember to delete the allocated buffer when you're done with it
+//	delete[] myLpcwstr;
+//
+//	return 0;
+//}
+
+
+

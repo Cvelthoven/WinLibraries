@@ -50,7 +50,6 @@ public:
 		const string& strKey,
 		const string& strRegKeyValue);
 
-
 private:
 	//-----------------------------------------------------------------------------------
 	//
@@ -60,9 +59,18 @@ private:
 		const string& strSection,
 		const string& strKey);
 	void InitClass();
+	int InitGetOrSetRegistryValue(
+		const string& strSection,
+		const string& strKey);
 	int SetRegistryKeyValue(
 		const string& strSection,
 		const string& strKey);
+	void StringToLPCWSTR(
+		const std::string& strInput);
+	int UpdateRegistryKeyValue(
+		const string& strKeyPath,
+		const string& strKey,
+		const string& strNewKeyValue);
 
 	int
 		iRegistryKeyValue;// possible value of the key only used when the key is an integer
@@ -72,12 +80,18 @@ private:
 		strMainBranch,		// name of the mainbranch 
 		strDomain,			// name of the domain of the application
 		strApplication,		// name of the application
+		strSectionName,		// name of the section
+		strKeyName,			// name of the key
 		strRegistryKeyValue,// possible value of the key only used when the key is a string
-		strRegistryRootPath;// Key path to application registry root without hive
+		strRegistryRootPath,// Key path to application registry root without hive
+		strRegistryFullPath;// Full path to the registry key currently searched/used
 
-//	LPCWSTR
-//		lpSubKey,
-//		lpKey;
+	HKEY
+		hkHive = HKEY_LOCAL_MACHINE;// value for hive
+
+	LPCWSTR
+		lpSubKey,
+		lpKey;
 
 };
 
