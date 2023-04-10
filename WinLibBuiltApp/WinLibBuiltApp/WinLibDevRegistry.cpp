@@ -144,7 +144,9 @@ WinLibDevRegistry::~WinLibDevRegistry()
 //		- strSection
 //		- strKey
 //	- output:
-//		- GetRegistryKeyValue
+//		- GetRegistryKeyValue:
+//			- 0: Registykey value retrieved
+//			- 1: Unable to retrieve registrykey value
 //		- strRegistryKevValue
 //
 //---------------------------------------------------------------------------------------
@@ -177,12 +179,12 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	if (GetRegistryKeyValue() == 0)
 	{
 		strRegKeyValue = strRegistryKeyValue;
-		return 1;
+		return 0;
 	}
 	else
 	{
 		strRegKeyValue = "";
-		return 0;
+		return 1;
 	}
 
 }
@@ -195,6 +197,8 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 //		- strKey
 //	- output:
 //		- GetRegistryKeyValue
+//			- 0: Registykey value retrieved
+//			- 1: Unable to retrieve registrykey value
 //		- iRegistryKevValue
 //
 //---------------------------------------------------------------------------------------
@@ -244,43 +248,43 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 
 	string strRegOriginalValue = "";// current registry value if found
 
-	////-----------------------------------------------------------------------------------
-	////
-	////	Retrieve original registry value if exists
-	////
-	//if (GetRegistryKeyValue() == 0)
-	//{
-	//	strRegOriginalValue = strRegistryKeyValue;
-	//	iRegistryValueFound = 1;
-	//}
-	//else
-	//{
-	//	strRegOriginalValue = "";
-	//}
+	//-----------------------------------------------------------------------------------
+	//
+	//	Retrieve original registry value if exists
+	//
+	if (GetRegistryKeyValue(strSection, strKey, strRegOriginalValue) == 0)
+	{
+		strRegOriginalValue = strRegistryKeyValue;
+		iRegistryValueFound = 1;
+	}
+	else
+	{
+		strRegOriginalValue = "";
+	}
 
-	////-----------------------------------------------------------------------------------
-	////
-	////	Compare new value with original value if found
-	////
-	//if ((iRegistryValueFound == 1)&&
-	//	(strRegOriginalValue != strRegKeyValue))
-	//	{
-	//		switch (UpdateRegistryKeyValue(strSection, strKey, strRegistryKeyValue))
-	//		{
-	//			case 0:
-	//				iRC = 0;
-	//				break;
-	//			default:
-	//				iRC = 0;
-	//				break;
-	//		}
-	//	}
-	//	else
-	//		//---------------------------------------------------------------------------
-	//		//
-	//		//	Current key value is equel to the new value -> no action required
-	//		//
-	//		iRC = 0;
+	//-----------------------------------------------------------------------------------
+	//
+	//	Compare new value with original value if found
+	//
+	if ((iRegistryValueFound == 1)&&
+		(strRegOriginalValue != strRegKeyValue))
+		{
+			switch (UpdateRegistryKeyValue(strSection, strKey, strRegistryKeyValue))
+			{
+				case 0:
+					iRC = 0;
+					break;
+				default:
+					iRC = 0;
+					break;
+			}
+		}
+		else
+			//---------------------------------------------------------------------------
+			//
+			//	Current key value is equel to the new value -> no action required
+			//
+			iRC = 0;
 
 	return iRC;
 }
@@ -299,6 +303,10 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 //		- strAppName
 //		- strSection
 //		- strKey
+//	- Output:
+//		- GetRegistryKeyValue:
+//			- 0: Registykey value retrieved
+//			- 1: Unable to retrieve registrykey value
 //
 //---------------------------------------------------------------------------------------
 int WinLibDevRegistry::GetRegistryKeyValue()
@@ -456,6 +464,18 @@ void WinLibDevRegistry::InitClass()
 	}
 }
 
+//---------------------------------------------------------------------------------------
+//
+//	InitGetOrSetRegistryValue
+//	- input:
+//		- strSection
+//		- strKey
+//	- output:
+//		- InitGetOrSetRegistryValue:
+//			- 0: Init of values successfull
+//			- 1: Init of values failed
+//
+// --------------------------------------------------------------------------------------
 int WinLibDevRegistry::InitGetOrSetRegistryValue(
 	const string& strSection,
 	const string& strKey)

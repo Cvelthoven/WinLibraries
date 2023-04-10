@@ -73,7 +73,7 @@ void MainWindow::WinLibRegistry()
 	//
 	//	Update registry key
 	//
-	if (iRC == 1)
+	if (iRC == 0)
 	{
 		strKeyValue = "KeyNewValue";
 		iRC = clsRegistry->SetRegistryKeyValue(strSection, strKey, strKeyValue);
