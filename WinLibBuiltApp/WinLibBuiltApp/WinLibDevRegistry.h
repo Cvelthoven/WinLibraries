@@ -58,6 +58,7 @@ private:
 	int GetRegistryKeyValue(
 		const string& strSection,
 		const string& strKey);
+	int GetRegistryKeyValue();
 	void InitClass();
 	int InitGetOrSetRegistryValue(
 		const string& strSection,
@@ -65,7 +66,7 @@ private:
 	int SetRegistryKeyValue(
 		const string& strSection,
 		const string& strKey);
-	void StringToLPCWSTR(
+	LPCWSTR StringToLPCWSTR(
 		const std::string& strInput);
 	int UpdateRegistryKeyValue(
 		const string& strKeyPath,
@@ -90,8 +91,8 @@ private:
 		hkHive = HKEY_LOCAL_MACHINE;// value for hive
 
 	LPCWSTR
-		lpSubKey,
-		lpKey;
+		lpSubKey = nullptr,
+		lpKey = nullptr;
 
 };
 
