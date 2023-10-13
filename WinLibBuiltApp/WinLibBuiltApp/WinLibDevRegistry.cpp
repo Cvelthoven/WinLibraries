@@ -269,7 +269,7 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 	if ((iRegistryValueFound == 1)&&
 		(strRegOriginalValue != strRegKeyValue))
 		{
-			switch (UpdateRegistryKeyValue(strSection, strKey, strRegistryKeyValue))
+			switch (UpdateRegistryKeyValue(strSection, strKey, strRegKeyValue))
 			{
 				case 0:
 					iRC = 0;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI verified="false" xmi.version="1.2" timestamp="2023-04-03T14:53:24" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
+<XMI verified="false" xmi.version="1.2" timestamp="2023-10-13T13:47:57" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -14,7 +14,6 @@
     <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="folder" name="folder"/>
     <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="constructor" name="constructor"/>
     <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="destructor" name="destructor"/>
-    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="interface" name="interface"/>
     <UML:Model visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Logical_View" name="Logical View">
      <UML:Namespace.ownedElement>
       <UML:Package stereotype="folder" visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Datatypes" name="Datatypes">
@@ -41,6 +40,7 @@
         <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" elementReference="uaPcJlB7Bqu53" isRoot="false" xmi.id="umepfsxxE97FJ" name="const string&amp;"/>
         <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" elementReference="uaPcJlB7Bqu53" isRoot="false" xmi.id="uMjqbNu1Hqtf1" name="string&amp;"/>
         <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" elementReference="uWMepBJ2qg4UF" isRoot="false" xmi.id="uqPtA0Vwyruj0" name="int&amp;"/>
+        <UML:DataType visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="umU6fuU0OWUCT" name="undef"/>
        </UML:Namespace.ownedElement>
       </UML:Package>
       <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u2Ymcmxyi9dFh" comment="---------------------------------------------------------------------------------------&#xa;&#xa;MainWindow class definitions&#xa;&#xa;---------------------------------------------------------------------------------------&#xa;" name="MainWindow">
@@ -62,7 +62,9 @@
         <UML:Attribute visibility="private" isSpecification="false" xmi.id="uDkXlDUZA4bNm" type="uaPcJlB7Bqu53" comment="possible value of the key only used when the key is a string" name="strRegistryKeyValue"/>
         <UML:Attribute visibility="private" isSpecification="false" xmi.id="uV6wziNCzw4uM" type="uaPcJlB7Bqu53" comment="Key path to application registry root without hive" name="strRegistryRootPath"/>
         <UML:Attribute visibility="private" isSpecification="false" xmi.id="ucTcIizKfe4wG" type="uaPcJlB7Bqu53" comment="Full path to the registry key currently searched/used" name="strRegistryFullPath"/>
-        <UML:Attribute visibility="private" isSpecification="false" xmi.id="u7iVtYxm99Rbs" type="uMf5Xu49rwI3K" comment="value for hive" name="hkHive"/>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="u7iVtYxm99Rbs" type="umU6fuU0OWUCT" comment="value for hive" name="hkHive"/>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="uN80VjzyRhhjx" type="umU6fuU0OWUCT" name="lpSubKey"/>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="uxoRPvKtNGjLx" type="umU6fuU0OWUCT" name="lpKey"/>
         <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uuXz5R1EaVeol" comment="-----------------------------------------------------------------------------------&#xa;&#xa;Constructors and destructor&#xa;" isOverride="false" name="WinLibRegistry" isInline="false" isVirtual="false"/>
         <UML:Operation stereotype="constructor" visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uwdBBDP56ok6u" isOverride="false" name="WinLibRegistry" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
@@ -83,9 +85,9 @@
         <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="utCVcDV2Z6TMU" comment="-----------------------------------------------------------------------------------&#xa;&#xa;Public methodes&#xa;" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
           <UML:Parameter kind="return" xmi.id="uSyqEDWSKqjIv" type="uWMepBJ2qg4UF"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ui1UZnI7cgUWy" type="umepfsxxE97FJ" value="" name="strSection"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uPwT1QwHg8X3j" type="umepfsxxE97FJ" value="" name="strKey"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ufzCjVMGkaESD" type="uMjqbNu1Hqtf1" value="" name="strRegKeyValue"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="um3lqf20tqu5n" type="umepfsxxE97FJ" value="" name="strSection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ueOupXvflMBgZ" type="umepfsxxE97FJ" value="" name="strKey"/>
+          <UML:Parameter visibility="private" isSpecification="false" kind="out" xmi.id="utsX54Fz2vHRB" type="uMjqbNu1Hqtf1" value="" name="strRegKeyValue"/>
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
         <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uE9lIf0l5TKdS" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
@@ -93,7 +95,7 @@
           <UML:Parameter kind="return" xmi.id="uNmszLdMhJSQj" type="uWMepBJ2qg4UF"/>
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="uKyqfBmL9JOFL" type="umepfsxxE97FJ" value="" name="strSection"/>
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="u9UXhA4bx7Mcx" type="umepfsxxE97FJ" value="" name="strKey"/>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u2867mwuERxIt" type="uqPtA0Vwyruj0" value="" name="iRegKeyValue"/>
+          <UML:Parameter visibility="private" isSpecification="false" kind="out" xmi.id="upoi5RM2kQc7J" type="uqPtA0Vwyruj0" value="" name="iRegKeyValue"/>
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
         <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uXsfeV5D0vUE8" isOverride="false" name="SetRegistryKeyValue" isInline="false" isVirtual="false">
@@ -111,138 +113,261 @@
           <UML:Parameter visibility="private" isSpecification="false" xmi.id="uhNgpEqqOyCjc" type="umepfsxxE97FJ" value="" name="strKey"/>
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
-       </UML:Classifier.feature>
-      </UML:Class>
-      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uH7KYus5OOQCX" name="LibRegestryRetrieveKeys">
-       <UML:Classifier.feature>
-        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uyLUEz8m4vCCN" comment="Inherited via LibRegistry&#xd;" isOverride="false" name="GetRestrisryKeyValue" isInline="false" isVirtual="false">
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uhN72qI9s05Y6" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
-          <UML:Parameter kind="return" xmi.id="uyNhrhqRLGsEi" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter kind="return" xmi.id="uGJ9z3mrv6XX7" type="uWMepBJ2qg4UF"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u21ujtrXcZDHH" isOverride="false" name="InitClass" isInline="false" isVirtual="false"/>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uZteCRgsPwjHm" isOverride="false" name="InitGetOrSetRegistryValue" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uJmHMf0rrUXzX" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uBKKrPSWy8Gjy" type="umepfsxxE97FJ" value="" name="strSection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uY3YZINNrOLDl" type="umepfsxxE97FJ" value="" name="strKey"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uWNOlLvU7yNbM" isOverride="false" name="SetRegistryKeyValue" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uh8WbNiLpBbma" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uwLPFfEMpB5OR" type="umepfsxxE97FJ" value="" name="strSection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uR0alaAOtGrOg" type="umepfsxxE97FJ" value="" name="strKey"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u4vG2PYYOi62k" isOverride="false" name="StringToLPCWSTR" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="unBH2ilP2WaUP" type="umU6fuU0OWUCT"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uMV72gkFSxY85" type="umU6fuU0OWUCT" value="" name="strInput"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uqUhPJFaVqKtf" isOverride="false" name="UpdateRegistryKeyValue" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uuwzhE5gmPJD6" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uHhLL9sBs1mbH" type="umepfsxxE97FJ" value="" name="strKeyPath"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u85Ydl4ARspUh" type="umepfsxxE97FJ" value="" name="strKey"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ueS1iiXDNGl6F" type="umepfsxxE97FJ" value="" name="strNewKeyValue"/>
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
        </UML:Classifier.feature>
       </UML:Class>
-      <UML:Interface stereotype="interface" visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="true" isLeaf="false" isRoot="false" xmi.id="u9zDeHm6KIYPe" name="LibRegistry">
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uKIvUxhfjvm4C" name="int WinLibDevRegistry::GetRegistryKeyValue"/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ud9pCKicxuJY0" name="InitGetOrSetRegistryValue">
        <UML:Classifier.feature>
-        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="true" isLeaf="false" isRoot="false" xmi.id="ujTHqV8cpvzrJ" isOverride="false" name="GetRestrisryKeyValue" isInline="false" isVirtual="false">
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uh5yGpljPLiTn" isOverride="false" name="InitGetOrSetRegistryValue" isInline="false" isVirtual="false">
          <UML:BehavioralFeature.parameter>
-          <UML:Parameter kind="return" xmi.id="uc9gaaZI0jydM" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter kind="return" xmi.id="uGLQM3Md9zyJI" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="utvf0mrSDRLnw" type="umepfsxxE97FJ" value="" name="strSection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uU95NJrgtS2bv" type="umepfsxxE97FJ" value="" name="strKey"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ulnT2xjP31MlM" isOverride="false" name="StringToLPCWSTR" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="ukRS1WqvlPFQj" type="umU6fuU0OWUCT"/>
+          <UML:Parameter visibility="private" isSpecification="false" kind="out" xmi.id="ur34t2GISNEu3" type="umU6fuU0OWUCT" value="" name="StringToLPCWSTR"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="u2KhhnJczFpAk" isOverride="false" name="StringToLPCWSTR" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uIxIlC5Go0rIU" type="umU6fuU0OWUCT"/>
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
        </UML:Classifier.feature>
-      </UML:Interface>
-      <UML:Abstraction visibility="public" isSpecification="false" namespace="Logical_View" supplier="u9zDeHm6KIYPe" xmi.id="uLVbRgkb3nkFw" client="uH7KYus5OOQCX" name=""/>
-      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uMf5Xu49rwI3K" name="HKEY"/>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uD3tB8ttcABL9" name="GetRegistryKeyValue">
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ugxaxvSoSpc8q" isOverride="false" name="new_operation" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="umT5YVgVxv2XA" type="uWMepBJ2qg4UF"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ujcL60OgsoqTq" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uuHib39rPn7yU" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u4rGylqOA0UwX" type="umepfsxxE97FJ" value="" name="strSection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u9d2frp98bIea" type="umepfsxxE97FJ" value="" name="strKey"/>
+          <UML:Parameter visibility="private" isSpecification="false" kind="out" xmi.id="u2HkjB1C6sgbE" type="uaPcJlB7Bqu53" value="" name="strRegOriginalValue"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uWehX6GFEmOCX" name="SetRegistryKeyValue">
+       <UML:Classifier.feature>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="udzR1w16AuAGU" isOverride="false" name="InitGetOrSetRegistryValue" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uKWBxUOakGOM5" type="uWMepBJ2qg4UF"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uoAbsIQtnX6mz" isOverride="false" name="GetRegistryKeyValue" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uit2HK6qZlqEo" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uw4EanHwdC4sE" type="umepfsxxE97FJ" value="" name="strSection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u7Hs9LH1FxkMU" type="umepfsxxE97FJ" value="" name="strKey"/>
+          <UML:Parameter visibility="private" isSpecification="false" kind="out" xmi.id="u9qvrnumstF4J" type="uMjqbNu1Hqtf1" value="" name="strRegOriginalValue"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="um9P5DfdQUg3B" name="StringToLPCWSTR">
+       <UML:Classifier.feature>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uTkEXeJcvUeSV" isOverride="false" name="StringToLPCWSTR" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="upfS2F019Ynai" type="umU6fuU0OWUCT"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uo3AGrCp0sRNl" type="umU6fuU0OWUCT" value="" name="strInput"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical_View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uW7EuyaOTz399" name="UpdateRegistryKeyValue">
+       <UML:Classifier.feature>
+        <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uyolgS8bwvymw" isOverride="false" name="UpdateRegistryKeyValue" isInline="false" isVirtual="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="uHOJvVaaoPywU" type="uWMepBJ2qg4UF"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="u4fwTAHuIMoVL" type="umepfsxxE97FJ" value="" name="strSection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uRCzMLQeBdREi" type="uMjqbNu1Hqtf1" value="" name="strKey"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uCmH9BMwDHPS1" type="uaPcJlB7Bqu53" value="" name="strRegistryKeyValue"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello">
       <diagrams resolution="96">
-       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="WinLibRegistry - class diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="509" canvaswidth="1084" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#f6f6f6" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffffc0" zoom="107.6126400456718" xmi.id="uCBW4Lvte85dP" documentation="" showscope="1" snapgrid="0" showatts="1" type="1">
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="WinLibRegistry - class diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="629" canvaswidth="1084" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#f6f6f6" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffffc0" zoom="107" xmi.id="uCBW4Lvte85dP" documentation="" showscope="1" snapgrid="0" showatts="1" type="1">
         <widgets>
          <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-2064" showattsigs="601" showstereotype="1" y="-1435" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uNgWNNOO5wkNR" width="177" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" xmi.id="u2Ymcmxyi9dFh" autoresize="1" showscope="1" height="67" showopsigs="601"/>
-         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-1752" showattsigs="601" showstereotype="1" y="-1226" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="u8lazcUQYwKWE" width="772" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" xmi.id="umAYV4NADpJl4" autoresize="1" showscope="1" height="300" showopsigs="601"/>
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-1752" showattsigs="601" showstereotype="1" y="-1226" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="u8lazcUQYwKWE" width="772" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" xmi.id="umAYV4NADpJl4" autoresize="1" showscope="1" height="420" showopsigs="601"/>
         </widgets>
         <messages/>
         <associations/>
        </diagram>
-       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="WinLibRegistry->SetRegistryKeyValue - activity diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="213.5" canvaswidth="786" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#f6f6f6" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffffc0" zoom="100" xmi.id="unRCj6BaYZoNG" documentation="" showscope="1" snapgrid="0" showatts="1" type="6">
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="WinLibRegistry->SetRegistryKeyValue - activity diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="940" canvaswidth="840.5" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#f6f6f6" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffffc0" zoom="93" xmi.id="unRCj6BaYZoNG" documentation="" showscope="1" snapgrid="0" showatts="1" type="6">
         <widgets>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" usesdiagramusefillcolor="0" x="-663" showstereotype="1" y="-355.5" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="ufjHcRrq8f0vW" width="15" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" activityname="" xmi.id="uQ9QXttTLaSWW" postcondition="" documentation="" activitytype="0" autoresize="1" height="15" precondition=""/>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-620" showstereotype="1" y="-360.5" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uF8pCGBF7Uug5" width="117" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Check Value exist" xmi.id="upbYgJMYLZJyo" postcondition="" documentation="" activitytype="1" autoresize="1" height="25" precondition=""/>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-473" showstereotype="1" y="-358" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uU2kGg1P8lM3s" width="20" isinstance="0" usefillcolor="1" fillcolor="none" activityname="new activity" xmi.id="uIaXa1wkxNX04" postcondition="" documentation="" activitytype="4" autoresize="1" height="20" precondition=""/>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-371" showstereotype="1" y="-360.5" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uonI29csf48gS" width="97" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Retrieve value" xmi.id="uVR03fBCVepXD" postcondition="" documentation="" activitytype="1" autoresize="1" height="25" precondition=""/>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-463.5" showstereotype="1" y="-262.5" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uGC1QfpzTYHSA" width="113" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Check Key exists" xmi.id="uLCPYNpYQfkrD" postcondition="" documentation="" activitytype="1" autoresize="1" height="25" precondition=""/>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-161" showstereotype="1" y="-359.5" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="uttBcomi6xoXo" width="138" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Compare with new value" xmi.id="urtV7OhRe3L42" postcondition="" documentation="" activitytype="1" autoresize="1" height="23" precondition=""/>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="5" showstereotype="1" y="-362" font="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" localid="uaQwZN52WmjHR" width="20" isinstance="0" usefillcolor="1" fillcolor="none" activityname="new activity" xmi.id="uP8YxX8O1pKW0" postcondition="" documentation="" activitytype="4" autoresize="1" height="20" precondition=""/>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="12" showstereotype="1" y="-261.5" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="uRoAbfbHJmb4h" width="79" isinstance="0" usefillcolor="1" fillcolor="none" activityname="SetKeyValue" xmi.id="uBqzf2cyqV8E8" postcondition="" documentation="" activitytype="1" autoresize="1" height="23" precondition=""/>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="108" showstereotype="1" y="-360.5" font="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" localid="u8CIYTmkEeUAd" width="15" isinstance="0" usefillcolor="1" fillcolor="none" activityname="new activity" xmi.id="u7petWwvRw7M4" postcondition="" documentation="" activitytype="2" autoresize="1" height="15" precondition=""/>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-281" showstereotype="1" y="-260" font="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" localid="ubSbGSmIoOykJ" width="20" isinstance="0" usefillcolor="1" fillcolor="none" activityname="new activity" xmi.id="uw92WMRAuDs0s" postcondition="" documentation="" activitytype="4" autoresize="1" height="20" precondition=""/>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-140" showstereotype="1" y="-261.5" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="uTY2vh4nGHMly" width="78" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Add value" xmi.id="urfhTggraO0zt" postcondition="" documentation="" activitytype="1" autoresize="1" height="23" precondition=""/>
-         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-276" showstereotype="1" y="-181" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="uyFbHYPVndLHu" width="78" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Add Key" xmi.id="uFbP8ZzrskslE" postcondition="" documentation="" activitytype="1" autoresize="1" height="23" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" usesdiagramusefillcolor="0" x="-808" showstereotype="1" y="14.5" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="ufjHcRrq8f0vW" width="15" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" activityname="" xmi.id="uQ9QXttTLaSWW" postcondition="" documentation="" activitytype="0" autoresize="1" height="15" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-765" showstereotype="1" y="9.5" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uF8pCGBF7Uug5" width="117" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Check Value exist" xmi.id="upbYgJMYLZJyo" postcondition="" documentation="" activitytype="1" autoresize="1" height="25" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-618" showstereotype="1" y="12" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uU2kGg1P8lM3s" width="20" isinstance="0" usefillcolor="1" fillcolor="none" activityname="new activity" xmi.id="uIaXa1wkxNX04" postcondition="" documentation="" activitytype="4" autoresize="1" height="20" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-516" showstereotype="1" y="9.5" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uonI29csf48gS" width="97" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Retrieve value" xmi.id="uVR03fBCVepXD" postcondition="" documentation="" activitytype="1" autoresize="1" height="25" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-608.5" showstereotype="1" y="107.5" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uGC1QfpzTYHSA" width="113" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Check Key exists" xmi.id="uLCPYNpYQfkrD" postcondition="" documentation="" activitytype="1" autoresize="1" height="25" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-306" showstereotype="1" y="10.5" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="uttBcomi6xoXo" width="138" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Compare with new value" xmi.id="urtV7OhRe3L42" postcondition="" documentation="" activitytype="1" autoresize="1" height="23" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-140" showstereotype="1" y="8" font="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" localid="uaQwZN52WmjHR" width="20" isinstance="0" usefillcolor="1" fillcolor="none" activityname="new activity" xmi.id="uP8YxX8O1pKW0" postcondition="" documentation="" activitytype="4" autoresize="1" height="20" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-133" showstereotype="1" y="108.5" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="uRoAbfbHJmb4h" width="79" isinstance="0" usefillcolor="1" fillcolor="none" activityname="SetKeyValue" xmi.id="uBqzf2cyqV8E8" postcondition="" documentation="" activitytype="1" autoresize="1" height="23" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-37" showstereotype="1" y="9.5" font="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" localid="u8CIYTmkEeUAd" width="15" isinstance="0" usefillcolor="1" fillcolor="none" activityname="new activity" xmi.id="u7petWwvRw7M4" postcondition="" documentation="" activitytype="2" autoresize="1" height="15" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-426" showstereotype="1" y="110" font="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" localid="ubSbGSmIoOykJ" width="20" isinstance="0" usefillcolor="1" fillcolor="none" activityname="new activity" xmi.id="uw92WMRAuDs0s" postcondition="" documentation="" activitytype="4" autoresize="1" height="20" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-285" showstereotype="1" y="108.5" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="uTY2vh4nGHMly" width="78" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Add value" xmi.id="urfhTggraO0zt" postcondition="" documentation="" activitytype="1" autoresize="1" height="23" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-421" showstereotype="1" y="189" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="uyFbHYPVndLHu" width="78" isinstance="0" usefillcolor="1" fillcolor="none" activityname="Add Key" xmi.id="uFbP8ZzrskslE" postcondition="" documentation="" activitytype="1" autoresize="1" height="23" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" usesdiagramusefillcolor="0" x="-594" showstereotype="1" y="-728" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="u1V1S6aHp8bdw" width="15" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" activityname="" xmi.id="uX8KfrpS0zuQs" postcondition="" documentation="" activitytype="0" autoresize="1" height="15" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" usesdiagramusefillcolor="0" x="-851" showstereotype="1" y="-641" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uqksqwxkSfRuX" width="526" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" activityname="SetRegistryKeyValue(const string&amp; strSection, const string&amp; strKey, string&amp; strRegKeyValue);" xmi.id="uiXpmGm0WoHZ1" postcondition="" documentation="" activitytype="1" autoresize="1" height="25" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" usesdiagramusefillcolor="0" x="-756" showstereotype="1" y="-569" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uvjtkO16CdhYt" width="354" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" activityname="GetRegistryKeyValue(strSection, strKey, strRegOriginalValue)" xmi.id="u66U3LznbfQUw" postcondition="" documentation="" activitytype="1" autoresize="1" height="25" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" usesdiagramusefillcolor="0" x="-594" showstereotype="1" y="-488" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uH9xuJ4f1wL78" width="20" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" activityname="" xmi.id="uo1s8Rn5P1Zf9" postcondition="" documentation="" activitytype="4" autoresize="0" height="20" precondition=""/>
+         <activitywidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="0" textcolor="#000000" usesdiagramusefillcolor="0" x="-765.1" showstereotype="1" y="-390.1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="u3DxiamNG1dhr" width="374" isinstance="0" usefillcolor="1" fillcolor="#ffffc0" activityname="UpdateRegistryKeyValue(strSection, strKey, strRegistryKeyValue)" xmi.id="u1h9A0YTniHOL" postcondition="" documentation="" activitytype="1" autoresize="1" height="25" precondition=""/>
         </widgets>
         <messages/>
         <associations>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="upbYgJMYLZJyo" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uQ9QXttTLaSWW" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="uhSKToc1X5DPr" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uJoFfqAT9CCNw" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="-648" starty="-348"/>
-           <endpoint endx="-620" endy="-348"/>
+           <startpoint startx="-793" starty="22"/>
+           <endpoint endx="-765" endy="22"/>
           </linepath>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="uIaXa1wkxNX04" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="upbYgJMYLZJyo" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="uSNE7TXM3XTLv" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uOafz19cqMOs4" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="-503" starty="-348"/>
-           <endpoint endx="-473" endy="-348"/>
+           <startpoint startx="-648" starty="22"/>
+           <endpoint endx="-618" endy="22"/>
           </linepath>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="uVR03fBCVepXD" indexb="1" linewidth="0" seqnum="" textcolor="#000000" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uIaXa1wkxNX04" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="utbaqZuAGoSkU" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uAdbeLxX1g6OX" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="-453" starty="-348"/>
-           <endpoint endx="-371" endy="-348"/>
+           <startpoint startx="-598" starty="22"/>
+           <endpoint endx="-516" endy="22"/>
           </linepath>
-          <floatingtext linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-455" showstereotype="1" y="-371.5" text="Value exists" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="u41wdGNUsbNpW" pretext="" role="703" width="74" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="uCm8gLuRlzwtP" autoresize="1" height="19"/>
+          <floatingtext linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-557" showstereotype="1" y="22" text="Value exists" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="u41wdGNUsbNpW" pretext="" role="703" width="74" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="uCm8gLuRlzwtP" autoresize="1" height="19"/>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="uLCPYNpYQfkrD" indexb="1" linewidth="0" seqnum="" textcolor="#000000" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uIaXa1wkxNX04" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="uGRVQ3oDqKSpu" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uG1WFknyKSC2W" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="-463.5" starty="-338"/>
-           <endpoint endx="-463.5" endy="-262.5"/>
+           <startpoint startx="-608.5" starty="32"/>
+           <endpoint endx="-608.5" endy="107.5"/>
           </linepath>
-          <floatingtext linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-463" showstereotype="1" y="-312" text="Value doen't exist" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="ujzLyPfz8Iqef" pretext="" role="703" width="103" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="uTwXUnGawU5Ib" autoresize="1" height="19"/>
+          <floatingtext linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-608.5" showstereotype="1" y="69.75" text="Value doen't exist" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="ujzLyPfz8Iqef" pretext="" role="703" width="103" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="uTwXUnGawU5Ib" autoresize="1" height="19"/>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="urtV7OhRe3L42" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uVR03fBCVepXD" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="usZoEgTSDj6vZ" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="ukknb9KSDIdSq" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="-274" starty="-348"/>
-           <endpoint endx="-161" endy="-348"/>
+           <startpoint startx="-419" starty="22"/>
+           <endpoint endx="-306" endy="22"/>
           </linepath>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="uP8YxX8O1pKW0" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="urtV7OhRe3L42" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="ujgfa8b4XE2bz" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uAdm7R6zm0gAw" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="-23" starty="-350"/>
-           <endpoint endx="5" endy="-350"/>
+           <startpoint startx="-168" starty="20"/>
+           <endpoint endx="-140" endy="20"/>
           </linepath>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="uBqzf2cyqV8E8" indexb="1" linewidth="0" seqnum="" textcolor="#000000" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uP8YxX8O1pKW0" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="uQI3PcYOzUWuF" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uzC8fB4TPFECH" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="14" starty="-342"/>
-           <endpoint endx="14" endy="-261.5"/>
+           <startpoint startx="-131" starty="28"/>
+           <endpoint endx="-131" endy="108.5"/>
           </linepath>
-          <floatingtext linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="18.5" showstereotype="1" y="-298.25" text="Different values" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="udLYPP04yPj2r" pretext="" role="703" width="85" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="uj8hVYa3REtyl" autoresize="1" height="17"/>
+          <floatingtext linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-131" showstereotype="1" y="68.25" text="Different values" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="udLYPP04yPj2r" pretext="" role="703" width="85" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="uj8hVYa3REtyl" autoresize="1" height="17"/>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="u7petWwvRw7M4" indexb="1" linewidth="0" seqnum="" textcolor="#000000" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uP8YxX8O1pKW0" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="usfL0jwqbhPYd" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uVwSZOEdfZLGI" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="25" starty="-350"/>
-           <endpoint endx="108" endy="-350"/>
+           <startpoint startx="-120" starty="20"/>
+           <endpoint endx="-37" endy="20"/>
           </linepath>
-          <floatingtext linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="31" showstereotype="1" y="-370" text="Same values" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="uZsYcFXgH3o8Z" pretext="" role="703" width="68" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="uh2VCvHN3Jt4T" autoresize="1" height="17"/>
+          <floatingtext linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-78.5" showstereotype="1" y="20" text="Same values" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="uZsYcFXgH3o8Z" pretext="" role="703" width="68" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="uh2VCvHN3Jt4T" autoresize="1" height="17"/>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="uw92WMRAuDs0s" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uLCPYNpYQfkrD" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="ueCUOtoCZUZb9" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uLlwDPWjjyVuY" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="-350.5" starty="-250"/>
-           <endpoint endx="-281" endy="-250"/>
+           <startpoint startx="-495.5" starty="120"/>
+           <endpoint endx="-426" endy="120"/>
           </linepath>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="urfhTggraO0zt" indexb="1" linewidth="0" seqnum="" textcolor="#000000" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uw92WMRAuDs0s" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="uVnBALRoKZ4Mx" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uMmNiRxqZqfg9" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="-261" starty="-250"/>
-           <endpoint endx="-140" endy="-250"/>
+           <startpoint startx="-406" starty="120"/>
+           <endpoint endx="-285" endy="120"/>
           </linepath>
-          <floatingtext linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-253" showstereotype="1" y="-272" text="Key exists" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="u8n0B5uUnJ5d6" pretext="" role="703" width="57" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="uxUH1kaaX2YBC" autoresize="1" height="17"/>
+          <floatingtext linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-345.5" showstereotype="1" y="120" text="Key exists" font="MS Shell Dlg 2,8.2,-1,5,50,0,0,0,0,0" localid="u8n0B5uUnJ5d6" pretext="" role="703" width="57" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="uxUH1kaaX2YBC" autoresize="1" height="17"/>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="uFbP8ZzrskslE" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uw92WMRAuDs0s" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="uKVKRne1ILl25" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uxNhl1Q7hJudM" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="-274" starty="-240"/>
-           <endpoint endx="-274" endy="-181"/>
+           <startpoint startx="-419" starty="130"/>
+           <endpoint endx="-419" endy="189"/>
           </linepath>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="urfhTggraO0zt" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uFbP8ZzrskslE" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="uT6Qb2yvTTNLV" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="ueLg9XkIEMVV1" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="-198" starty="-181"/>
-           <endpoint endx="-140" endy="-238.5"/>
+           <startpoint startx="-343" starty="189"/>
+           <endpoint endx="-285" endy="131.5"/>
           </linepath>
          </assocwidget>
          <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="uBqzf2cyqV8E8" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="urfhTggraO0zt" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="uyoZDoLdo2Icy" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="u1EAA4rvhtl8o" changeabilityB="900" documentation="" autoresize="1" type="515">
           <linepath layout="Direct">
-           <startpoint startx="-62" starty="-250"/>
-           <endpoint endx="12" endy="-250"/>
+           <startpoint startx="-207" starty="120"/>
+           <endpoint endx="-133" endy="120"/>
           </linepath>
+         </assocwidget>
+         <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="uiXpmGm0WoHZ1" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uX8KfrpS0zuQs" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="uj5Dg5NpZckKq" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uToko3NQyt1YA" changeabilityB="900" documentation="" autoresize="1" type="515">
+          <linepath layout="Direct">
+           <startpoint startx="-587" starty="-713"/>
+           <endpoint endx="-587" endy="-641"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="u66U3LznbfQUw" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uiXpmGm0WoHZ1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="umUPFtWI7WvjD" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uRFldVRmIJTSS" changeabilityB="900" documentation="" autoresize="1" type="515">
+          <linepath layout="Direct">
+           <startpoint startx="-579" starty="-616"/>
+           <endpoint endx="-579" endy="-569"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="uo1s8Rn5P1Zf9" indexb="1" linewidth="0" seqnum="" textcolor="none" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="u66U3LznbfQUw" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="uRnjnMh8UqZgM" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="u1WddTMaRYYlX" changeabilityB="900" documentation="" autoresize="1" type="515">
+          <linepath layout="Direct">
+           <startpoint startx="-584" starty="-544"/>
+           <endpoint endx="-584" endy="-488"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget linecolor="#ff0000" roleBdoc="" indexa="1" usesdiagramfillcolor="1" widgetbid="u1h9A0YTniHOL" indexb="1" linewidth="0" seqnum="" textcolor="#000000" usesdiagramusefillcolor="1" totalcounta="2" totalcountb="2" roleAdoc="" widgetaid="uo1s8Rn5P1Zf9" font="Sans Serif,9,-1,0,50,0,0,0,0,0" visibilityA="0" visibilityB="0" localid="utIl4nJuu1oXZ" usefillcolor="1" fillcolor="none" changeabilityA="900" xmi.id="uB6bpZyY26qGM" changeabilityB="900" documentation="" autoresize="1" type="515">
+          <linepath layout="Direct">
+           <startpoint startx="-578.1" starty="-468"/>
+           <endpoint endx="-578.1" endy="-390.1"/>
+          </linepath>
+          <floatingtext linecolor="#ff0000" usesdiagramfillcolor="1" linewidth="0" textcolor="none" usesdiagramusefillcolor="1" x="-578.1" showstereotype="1" y="-429.05" text="If registry key found" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="uEyxrGVEVNtMZ" pretext="" role="703" width="112" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="uvsRYSh3tJmVO" autoresize="1" height="19"/>
          </assocwidget>
         </associations>
        </diagram>
@@ -303,7 +428,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello">
-  <docsettings viewid="uCBW4Lvte85dP" uniqueid="uMf5Xu49rwI3K" documentation=""/>
+  <docsettings viewid="unRCj6BaYZoNG" uniqueid="uXRkZGZMjecFW" documentation=""/>
   <listview>
    <listitem open="1" type="800" id="Views">
     <listitem open="1" type="821" id="Component_View">
@@ -358,41 +483,63 @@
       <listitem open="0" type="829" id="uaPcJlB7Bqu53"/>
       <listitem open="0" type="829" id="uMjqbNu1Hqtf1"/>
       <listitem open="0" type="829" id="uZALVNiKAhOOk"/>
+      <listitem open="0" type="829" id="umU6fuU0OWUCT"/>
       <listitem open="0" type="829" id="u2GEI4eifGCUc"/>
       <listitem open="0" type="829" id="uJVxdJIToV9l5"/>
       <listitem open="0" type="829" id="uLtezFrOHvMWU"/>
       <listitem open="0" type="829" id="ubdh3556N6T45"/>
       <listitem open="0" type="829" id="uWRBlBDB8XTzX"/>
      </listitem>
-     <listitem open="1" type="813" id="uMf5Xu49rwI3K"/>
-     <listitem open="0" type="813" id="uH7KYus5OOQCX">
-      <listitem open="0" type="815" id="uyLUEz8m4vCCN"/>
+     <listitem open="0" type="813" id="uD3tB8ttcABL9">
+      <listitem open="0" type="815" id="ujcL60OgsoqTq"/>
+      <listitem open="0" type="815" id="ugxaxvSoSpc8q"/>
      </listitem>
-     <listitem open="0" type="817" id="u9zDeHm6KIYPe">
-      <listitem open="0" type="815" id="ujTHqV8cpvzrJ"/>
+     <listitem open="0" type="813" id="ud9pCKicxuJY0">
+      <listitem open="0" type="815" id="uh5yGpljPLiTn"/>
+      <listitem open="0" type="815" id="u2KhhnJczFpAk"/>
+      <listitem open="0" type="815" id="ulnT2xjP31MlM"/>
      </listitem>
+     <listitem open="1" type="813" id="uKIvUxhfjvm4C"/>
      <listitem open="0" type="813" id="u2Ymcmxyi9dFh">
       <listitem open="0" type="815" id="ucH1CGd5MqYDt"/>
       <listitem open="0" type="815" id="ujgtd01gPRH2q"/>
       <listitem open="0" type="815" id="uxbozPzhUKoAV"/>
      </listitem>
-     <listitem open="1" type="813" id="umAYV4NADpJl4">
+     <listitem open="0" type="813" id="uWehX6GFEmOCX">
+      <listitem open="0" type="815" id="uoAbsIQtnX6mz"/>
+      <listitem open="0" type="815" id="udzR1w16AuAGU"/>
+     </listitem>
+     <listitem open="0" type="813" id="um9P5DfdQUg3B">
+      <listitem open="0" type="815" id="uTkEXeJcvUeSV"/>
+     </listitem>
+     <listitem open="0" type="813" id="uW7EuyaOTz399">
+      <listitem open="0" type="815" id="uyolgS8bwvymw"/>
+     </listitem>
+     <listitem open="0" type="813" id="umAYV4NADpJl4">
       <listitem open="0" type="815" id="u9TqTGGXHUfxk"/>
+      <listitem open="0" type="815" id="uhN72qI9s05Y6"/>
       <listitem open="0" type="815" id="uiEsDpLYYgQmk"/>
       <listitem open="0" type="815" id="uE9lIf0l5TKdS"/>
       <listitem open="0" type="815" id="utCVcDV2Z6TMU"/>
       <listitem open="0" type="814" id="u7iVtYxm99Rbs"/>
+      <listitem open="0" type="815" id="u21ujtrXcZDHH"/>
+      <listitem open="0" type="815" id="uZteCRgsPwjHm"/>
       <listitem open="0" type="814" id="uxiVHlsbktKdj"/>
+      <listitem open="0" type="814" id="uxoRPvKtNGjLx"/>
+      <listitem open="0" type="814" id="uN80VjzyRhhjx"/>
+      <listitem open="0" type="815" id="uWNOlLvU7yNbM"/>
       <listitem open="0" type="815" id="uXsfeV5D0vUE8"/>
       <listitem open="0" type="814" id="uYtKpAT0wdFkS"/>
       <listitem open="0" type="814" id="uj4UIeQIV1KQk"/>
       <listitem open="0" type="814" id="uiJYN3BMBFyDI"/>
+      <listitem open="0" type="815" id="u4vG2PYYOi62k"/>
       <listitem open="0" type="814" id="uMYkrS1C9PQmN"/>
       <listitem open="0" type="814" id="ur1YtKJ78gkL1"/>
       <listitem open="0" type="814" id="ucTcIizKfe4wG"/>
       <listitem open="0" type="814" id="uDkXlDUZA4bNm"/>
       <listitem open="0" type="814" id="uV6wziNCzw4uM"/>
       <listitem open="0" type="814" id="uubhrLgJiKeth"/>
+      <listitem open="0" type="815" id="uqUhPJFaVqKtf"/>
       <listitem open="0" type="815" id="uuXz5R1EaVeol"/>
       <listitem open="0" type="815" id="uwdBBDP56ok6u"/>
       <listitem open="0" type="815" id="ugKDadnpMtY1G"/>
