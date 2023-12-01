@@ -48,7 +48,7 @@ WinLibDevRegistry::WinLibDevRegistry()
 //
 //	Constructor with
 //		- Hive
-//		- Domainname
+//		- Domain name
 //		- Application name
 // 
 //
@@ -83,7 +83,7 @@ WinLibDevRegistry::WinLibDevRegistry(
 //	Constructor with
 //		- Hive
 //		- Main branch
-//		- Domainname
+//		- Domain name
 //		- Application name
 //
 //---------------------------------------------------------------------------------------
@@ -334,7 +334,7 @@ int WinLibDevRegistry::GetRegistryKeyValue()
 	//
 	//	Open the registry key
 	//
-	if (RegOpenKeyEx(
+	if (RegOpenKeyExW(
 			hkHive,
 			lpSubKey,
 			0,
@@ -349,7 +349,7 @@ int WinLibDevRegistry::GetRegistryKeyValue()
 	//
 	//	Get the size of registry key
 	//
-	if (RegGetValue(
+	if (RegGetValueW(
 			hkHive,
 			NULL,
 			lpKey,
