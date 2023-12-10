@@ -68,24 +68,57 @@ private:
 		const string& strKey);
 	LPCWSTR StringToLPCWSTR(
 		const std::string& strInput);
-	int UpdateRegistryKeyValue(
-		const string& strKeyPath,
+	void SetRegistryKeyValueInit(
+		const string& strKeySectionPath,
 		const string& strKey,
-		const string& strNewKeyValue);
+		const string& strNewRegKeyValue);
+	int UpdateRegistryKeyValue(
+		const string& strKeySectionPath,
+		const string& strKey,
+		const string& strNewRegKeyValue);
 
 	int
-		iRegistryKeyValue;// possible value of the key only used when the key is an integer
+		iKeyValue;// possible value of the key only used when the key is an integer
 
 	string
+		//-------------------------------------------------------------------------------
+		//
+		//	Root values
+		//
 		strHive,			// name of the hive
 		strMainBranch,		// name of the mainbranch 
 		strDomain,			// name of the domain of the application
 		strApplication,		// name of the application
-		strSectionName,		// name of the section
-		strKeyName,			// name of the key
-		strRegistryKeyValue,// possible value of the key only used when the key is a string
-		strRegistryRootPath,// Key path to application registry root without hive
-		strRegistryFullPath;// Full path to the registry key currently searched/used
+
+		//-------------------------------------------------------------------------------
+		//
+		//	Registry key values
+		//
+		strSectionName,	// name of the section
+		strKeyName,		// name of the key
+		strRootPath,	// Key path to application registry root without hive
+		strFullPath,	// Full path to the registry key currently searched/used
+
+		//-------------------------------------------------------------------------------
+		//
+		//	Registry key value
+		//
+		strKeyValue,// possible value of the key only used when the key is a string
+
+		//-------------------------------------------------------------------------------
+		//
+		//	Values used when update the registry
+		//
+		strNewKey,			// New name of the key
+		strNewSection,		// New name of the section
+		strNewFullKeyPath,	// Full path to the registry key new searched/used
+
+		//-------------------------------------------------------------------------------
+		//
+		//	New registry key value
+		//
+		strNewKeyValue;		// New value of the key only used when the key is a string
+
 
 	HKEY
 		hkHive = HKEY_LOCAL_MACHINE;// value for hive

@@ -54,7 +54,7 @@ void MainWindow::WinLibRegistry()
 		strApplication = "WinLibBuiltApp",
 		strSection = "Builtsection01",
 		strKey = "BuiltKey01",
-		strKeyValue;
+		strKeyValue = "";
 
 
 	//-----------------------------------------------------------------------------------
@@ -71,7 +71,7 @@ void MainWindow::WinLibRegistry()
 
 	//--------------------------------------------------------------------------------------
 	//
-	//	Update registry key
+	//	Update existing registry key
 	//
 	if (iRC == 0)
 	{

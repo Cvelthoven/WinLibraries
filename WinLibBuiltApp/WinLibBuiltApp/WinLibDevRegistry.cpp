@@ -33,7 +33,6 @@ WinLibDevRegistry::WinLibDevRegistry()
 	strMainBranch = "";
 	strDomain = "";
 	strApplication = "";
-	strRegistryKeyValue = "";// ensure empty string for posibble result
 
 	//-----------------------------------------------------------------------------------
 	//
@@ -67,7 +66,6 @@ WinLibDevRegistry::WinLibDevRegistry(
 	strMainBranch		= "";
 	strDomain			= *strDomainName;
 	strApplication		= *strApplicationName;
-	strRegistryKeyValue = "";// ensure empty string for posibble result
 
 	//-----------------------------------------------------------------------------------
 	//
@@ -102,7 +100,6 @@ WinLibDevRegistry::WinLibDevRegistry(
 	strMainBranch		= *strMainBranchName;
 	strDomain			= *strDomainName;
 	strApplication		= *strApplicationName;
-	strRegistryKeyValue = "";// ensure empty string for posibble result
 
 	//-----------------------------------------------------------------------------------
 	//
@@ -178,7 +175,7 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	//
 	if (GetRegistryKeyValue() == 0)
 	{
-		strRegKeyValue = strRegistryKeyValue;
+		strRegKeyValue = strKeyValue;
 		return 0;
 	}
 	else
@@ -186,6 +183,7 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 		strRegKeyValue = "";
 		return 1;
 	}
+	
 
 }
 
@@ -213,7 +211,7 @@ int WinLibDevRegistry::GetRegistryKeyValue(
 	//
 	if (GetRegistryKeyValue() == 0)
 	{
-		iRegKeyValue = iRegistryKeyValue;
+		iRegKeyValue = iKeyValue;
 		return 1;
 	}
 	else
@@ -254,7 +252,7 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 	//
 	if (GetRegistryKeyValue(strSection, strKey, strRegOriginalValue) == 0)
 	{
-		strRegOriginalValue = strRegistryKeyValue;
+		strRegOriginalValue = strKeyValue;
 		iRegistryValueFound = 1;
 	}
 	else
@@ -282,7 +280,7 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 		else
 			//---------------------------------------------------------------------------
 			//
-			//	Current key value is equel to the new value -> no action required
+			//	Current key value is equal to the new value -> no action required
 			//
 			iRC = 0;
 
@@ -327,8 +325,8 @@ int WinLibDevRegistry::GetRegistryKeyValue()
 	//-----------------------------------------------------------------------------------
 	//
 	//	Set default value when key is not found
-	strRegistryKeyValue = strRC;
-	iRegistryKeyValue = 0;
+	strKeyValue = strRC;
+	iKeyValue = 0;
 
 	//-----------------------------------------------------------------------------------
 	//
@@ -405,14 +403,14 @@ int WinLibDevRegistry::GetRegistryKeyValue()
 			//	Return string value
 			case REG_SZ:
 				WideCharToMultiByte(CP_ACP, 0, KeyValue, -1, strTemp, 255, &DefChar, NULL);
-				strRegistryKeyValue = strTemp;
+				strKeyValue = strTemp;
 				iRC = 0;
 				break;
 				//-------------------------------------------------------------------------------
 				//
 				//	Return long value
 			case REG_DWORD:
-				iRegistryKeyValue = KeyValue[0];
+				iKeyValue = KeyValue[0];
 				iRC = 0;
 				break;
 			default:
@@ -449,19 +447,33 @@ void WinLibDevRegistry::InitClass()
 	//	Set string to key without hive and key
 	//
 	//-----------------------------------------------------------------------------------
-	strRegistryRootPath = "";
+	strRootPath = "";
 	if (strMainBranch.length() > 0)
 	{
-		strRegistryRootPath = strMainBranch;
+		strRootPath = strMainBranch;
 	}
 	if (strDomain.length() > 0)
 	{
-		strRegistryRootPath = strRegistryRootPath + "\\" + strDomain;
+		strRootPath = strRootPath + "\\" + strDomain;
 	}
 	if (strApplication.length() > 0)
 	{
-		strRegistryRootPath = strRegistryRootPath + "\\" + strApplication;
+		strRootPath = strRootPath + "\\" + strApplication;
 	}
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Set other class values to default
+	//
+	iKeyValue = 0;
+	strFullPath = strRootPath;
+	strKeyName = "";
+	strKeyValue = "";
+	strNewFullKeyPath = strRootPath;
+	strNewKey = "";
+	strNewSection = "";
+	strSectionName= "";
+
 }
 
 //---------------------------------------------------------------------------------------
@@ -484,13 +496,12 @@ int WinLibDevRegistry::InitGetOrSetRegistryValue(
 	//
 	//	Copy strSection to strSectionName
 	//	Copy strKey to strKeyName
-	//	Set strRegistryFullPath
+	//	Set strFullPath
 	//
-	strRegistryFullPath = strRegistryRootPath;
 	if (strSection.length() > 0)
 	{
 		strSectionName = strSection;
-		strRegistryFullPath = strRegistryRootPath + "\\" + strSection;
+		strFullPath = strRootPath + "\\" + strSection;
 	}
 	else
 	{
@@ -507,9 +518,9 @@ int WinLibDevRegistry::InitGetOrSetRegistryValue(
 
 	//-----------------------------------------------------------------------------------
 	//
-	//	convert strRegistryFullPath to LPCWSTR lpSubKey
+	//	convert strFullPath to LPCWSTR lpSubKey
 	//
-	lpSubKey = StringToLPCWSTR(strRegistryFullPath);
+	lpSubKey = StringToLPCWSTR(strFullPath);
 
 	//-----------------------------------------------------------------------------------
 	//
@@ -550,7 +561,7 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 	const string& strSection,
 	const string& strKey)
 {
-
+	
 
 	//-----------------------------------------------------------------------------------
 //	LSTATUS RegSetKeyValueA(
@@ -567,29 +578,73 @@ int WinLibDevRegistry::SetRegistryKeyValue(
 
 //---------------------------------------------------------------------------------------
 //
+//	SetRegistryKeyValueInit
+//	- input:
+//		- strKeySectionPath	: section path to registry key without the root path
+//		- strKey			: registry key name
+//		- strNewKeyValue	: new string value
+//
+//---------------------------------------------------------------------------------------
+void WinLibDevRegistry::SetRegistryKeyValueInit(
+	const string& strKeySectionPath,
+	const string& strKey,
+	const string& strNewRegKeyValue)
+{
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Built full registry path
+	//
+	if (strKeySectionPath.length() > 0)
+	{
+		strNewFullKeyPath = strNewFullKeyPath + "\\" + strKeySectionPath;
+	}
+	strNewSection = strKeySectionPath;
+	strNewKey = strKey;
+	strNewKeyValue = strNewRegKeyValue;
+
+}
+
+//---------------------------------------------------------------------------------------
+//
 //	UpdateRegistryKeyValue
 //	- input:
-//		- strKeyPath	: full path to registry key without the hive
-//		- strKey		: registry key name
-//		- strNewKeyValue: new string value
+//		- strKeySectionPath	: section path to registry key without the root path
+//		- strKey			: registry key name
+//		- strNewKeyValue	: new string value
 //	- output:
 //		- UpdateRegistryKeyValue:
 //			- 0: update value succesful
 //
 //---------------------------------------------------------------------------------------
 int WinLibDevRegistry::UpdateRegistryKeyValue(
-	const string& strKeyPath,
+	const string& strKeySectionPath,
 	const string& strKey,
-	const string& strNewKeyValue)
+	const string& strNewRegKeyValue)
 {
+	//-----------------------------------------------------------------------------------
+	//
+	//	Local variables	
+	//
 	int iRC = 0;// return code
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Initialize class values for update
+	//
+	SetRegistryKeyValueInit(strKeySectionPath, strKey, strNewRegKeyValue);
+
+	//-----------------------------------------------------------------------------------
+	//
+	//	Prepare input for update key
+	//   
 
 	//-----------------------------------------------------------------------------------
 	//
 	//	Open key
 	//
 
-	return 0;
+	return iRC;
 }
 
 //---------------------------------------------------------------------------------------
