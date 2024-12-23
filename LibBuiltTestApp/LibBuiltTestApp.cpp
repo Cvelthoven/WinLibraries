@@ -3,6 +3,9 @@
 
 #include "framework.h"
 #include "LibBuiltTestApp.h"
+//---------------------------------------------------------------------------------------
+// Extra includes for the application.
+#include "Main.h"
 
 #define MAX_LOADSTRING 100
 
@@ -26,6 +29,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Place code here.
+	//--------------------------------------------------------------------------------------
+	// Actual code for the application starts here.
+	//
+	Main* main = new Main();
+
+    //
+	// Actual code for the application ends here.
+    //
+	//--------------------------------------------------------------------------------------
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
