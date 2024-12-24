@@ -32,7 +32,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	//--------------------------------------------------------------------------------------
 	// Actual code for the application starts here.
 	//
-	Main* main = new Main();
+	//Main* main = new Main();
 
     //
 	// Actual code for the application ends here.
@@ -135,14 +135,39 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	//--------------------------------------------------------------------------------------
+    // 
+	// Create an instance of the Main class.
+    //
+    Main* main = new Main();
+
     switch (message)
     {
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
+			int iRC = 0;
             // Parse the menu selections:
             switch (wmId)
             {
+            //----------------------------------------------------------------------------
+            //
+			// Class menu items.
+            //
+			//----------------------------------------------------------------------------
+            //
+			// Encryption menu items.
+            //
+            case ID_ENCRYPTION_ENCRYPT:
+				iRC = main->Encrypt();
+				break;
+            case ID_ENCRYPTION_DECRYPT:
+				iRC = main->Decrypt();
+				break;
+			
+            //----------------------------------------------------------------------------
+			// Default menu items.
+            //
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;

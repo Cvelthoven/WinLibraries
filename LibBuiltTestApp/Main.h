@@ -10,6 +10,11 @@ class Main
 {
 public:
 	Main();
-	~Main();
+	//~Main();
+//---------------------------------------------------------------------------------------
+// Test the functions of the encryption class
+//
+	int Encrypt();
+	int Decrypt();
 };
 
