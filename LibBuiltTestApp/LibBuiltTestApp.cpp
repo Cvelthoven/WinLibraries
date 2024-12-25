@@ -225,15 +225,29 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 //
 INT_PTR CALLBACK Encrypt(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	static WCHAR* pInputText = NULL;
+
 	UNREFERENCED_PARAMETER(lParam);
 	switch (message)
 	{
 	case WM_INITDIALOG:
 		return (INT_PTR)TRUE;
 	case WM_COMMAND:
-		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+		if (LOWORD(wParam) == IDOK)
 		{
+			//------------------------------------------------------------------------------------
+            // 
+            // Get the text from the input box.
+            //
+			int iTextLength = GetWindowTextLength(GetDlgItem(hDlg, IDC_ENCRYPTINPUT));
+			pInputText = new WCHAR[iTextLength + 1];
+			GetWindowText(GetDlgItem(hDlg, IDC_ENCRYPTINPUT), pInputText, iTextLength + 1);
 			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
+		}
+		else if (LOWORD(wParam) == IDCANCEL)
+		{
+			EndDialog(hDlg, IDCANCEL);
 			return (INT_PTR)TRUE;
 		}
 		break;
