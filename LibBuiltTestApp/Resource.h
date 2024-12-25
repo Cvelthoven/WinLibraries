@@ -12,6 +12,8 @@
 #define IDI_SMALL                       108
 #define IDC_LIBBUILTTESTAPP             109
 #define IDR_MAINFRAME                   128
+#define IDD_DIALOG1                     129
+#define IDD_ENCRYPTINPUTBOX             129
 #define ID_FUNCTION_ENCRYPTION          32771
 #define ID_ENCRYPTION_ENCRYPT           32772
 #define ID_ENCRYPTION_DECRYPT           32773
@@ -22,7 +24,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        129
+#define _APS_NEXT_RESOURCE_VALUE        130
 #define _APS_NEXT_COMMAND_VALUE         32774
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           110
