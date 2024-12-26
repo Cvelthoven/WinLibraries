@@ -5,6 +5,10 @@
 #include "LibBuiltTestApp.h"
 //---------------------------------------------------------------------------------------
 // Extra includes for the application.
+#include <codecvt>
+#include <locale>
+#include <string>
+// Project includes.
 #include "Main.h"
 
 #define MAX_LOADSTRING 100
@@ -161,7 +165,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             //
             case ID_ENCRYPTION_ENCRYPT:
 				DialogBox(hInst, MAKEINTRESOURCE(IDD_ENCRYPTINPUTBOX), hWnd, Encrypt);
-				iRC = main->Encrypt();
+				//iRC = main->Encrypt();
 				break;
             case ID_ENCRYPTION_DECRYPT:
 				iRC = main->Decrypt();
@@ -237,12 +241,14 @@ INT_PTR CALLBACK Encrypt(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			//------------------------------------------------------------------------------------
             // 
-            // Get the text from the input box.
+            // Get the text from the input box and convert to string
             //
 			int iTextLength = GetWindowTextLength(GetDlgItem(hDlg, IDC_ENCRYPTINPUT));
 			pInputText = new WCHAR[iTextLength + 1];
 			GetWindowText(GetDlgItem(hDlg, IDC_ENCRYPTINPUT), pInputText, iTextLength + 1);
 			EndDialog(hDlg, LOWORD(wParam));
+            DialogEncryptInputBoxHandler(pInputText);
+
 			return (INT_PTR)TRUE;
 		}
 		else if (LOWORD(wParam) == IDCANCEL)
@@ -253,4 +259,44 @@ INT_PTR CALLBACK Encrypt(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 	return (INT_PTR)FALSE;
+}
+
+//---------------------------------------------------------------------------------------
+// 
+// Dialog fuctions
+//
+//---------------------------------------------------------------------------------------
+//
+// Dialog function for the encryption input box.
+//
+//---------------------------------------------------------------------------------------
+void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
+{
+	//--------------------------------------------------------------------------------------
+	// 
+	// Create an instance of the Main class.
+	//
+	Main* main = new Main();
+	main->Encrypt(lInputString);
+	return;
+}
+
+//---------------------------------------------------------------------------------------
+//
+// Onther functions
+//
+//---------------------------------------------------------------------------------------
+//
+// Function to convert WCHAR* to std::string
+//
+std::string ConvertWCHARToString(const WCHAR* wstr)
+{
+    // Convert WCHAR* to std::wstring
+    std::wstring ws(wstr);
+
+    // Use wstring_convert to convert wstring to string
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    std::string str = converter.to_bytes(ws);
+
+    return str;
 }

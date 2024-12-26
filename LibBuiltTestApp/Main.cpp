@@ -6,6 +6,7 @@
 //
 //---------------------------------------------------------------------------------------
 #include "Main.h"
+#include <Windows.h>
 
 //---------------------------------------------------------------------------------------
 //
@@ -24,7 +25,7 @@ Main::Main()
 // 
 // Test Encrypt function.
 //
-int Main::Encrypt()
+int Main::Encrypt(const WCHAR *lInputString)
 {
 	return 0;
 	

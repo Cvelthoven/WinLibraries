@@ -1,4 +1,5 @@
 #pragma once
+#include <Windows.h>
 //---------------------------------------------------------------------------------------
 // Main.h
 // 
@@ -14,7 +15,7 @@ public:
 //---------------------------------------------------------------------------------------
 // Test the functions of the encryption class
 //
-	int Encrypt();
+	int Encrypt(const WCHAR* lInputString);
 	int Decrypt();
 };
 
