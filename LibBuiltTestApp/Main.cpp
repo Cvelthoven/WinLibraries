@@ -25,8 +25,9 @@ Main::Main()
 // 
 // Test Encrypt function.
 //
-int Main::Encrypt(const WCHAR *lInputString)
+int Main::Encrypt(const WCHAR *lInputString, WCHAR *lOutputString)
 {
+	wcscpy_s(lOutputString, wcslen(lInputString) + 1, lInputString);
 	return 0;
 	
 }

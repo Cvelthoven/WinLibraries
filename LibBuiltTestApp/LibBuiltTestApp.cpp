@@ -272,12 +272,14 @@ INT_PTR CALLBACK Encrypt(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 //---------------------------------------------------------------------------------------
 void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 {
-	//--------------------------------------------------------------------------------------
+    static WCHAR* pOutputString = NULL;
+    //--------------------------------------------------------------------------------------
 	// 
 	// Create an instance of the Main class.
 	//
 	Main* main = new Main();
-	main->Encrypt(lInputString);
+    pOutputString = new WCHAR[255];
+	main->Encrypt(lInputString,pOutputString);
 	return;
 }
 
@@ -289,14 +291,14 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 //
 // Function to convert WCHAR* to std::string
 //
-std::string ConvertWCHARToString(const WCHAR* wstr)
-{
-    // Convert WCHAR* to std::wstring
-    std::wstring ws(wstr);
-
-    // Use wstring_convert to convert wstring to string
-    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-    std::string str = converter.to_bytes(ws);
-
-    return str;
-}
+//std::string ConvertWCHARToString(const WCHAR* wstr)
+//{
+//    // Convert WCHAR* to std::wstring
+//    std::wstring ws(wstr);
+//
+//    // Use wstring_convert to convert wstring to string
+//    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+//    std::string str = converter.to_bytes(ws);
+//
+//    return str;
+//}
