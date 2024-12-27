@@ -5,9 +5,7 @@
 #include "LibBuiltTestApp.h"
 //---------------------------------------------------------------------------------------
 // Extra includes for the application.
-#include <codecvt>
-#include <locale>
-#include <string>
+
 // Project includes.
 #include "Main.h"
 
@@ -17,6 +15,10 @@
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
+//---------------------------------------------------------------------------------------
+// Global variables for the application.
+//
+WCHAR g_displayText[MAX_LOADSTRING] = L"Hello, World!";
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -140,11 +142,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	//--------------------------------------------------------------------------------------
-    // 
-	// Create an instance of the Main class.
-    //
-    Main* main = new Main();
+    PAINTSTRUCT ps;
+    HDC hdc;
+    static const WCHAR* pInputText1 = L"Hello, World!"; // Example text to display
 
     switch (message)
     {
@@ -165,10 +165,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             //
             case ID_ENCRYPTION_ENCRYPT:
 				DialogBox(hInst, MAKEINTRESOURCE(IDD_ENCRYPTINPUTBOX), hWnd, Encrypt);
-				//iRC = main->Encrypt();
 				break;
             case ID_ENCRYPTION_DECRYPT:
-				iRC = main->Decrypt();
 				break;
 			
             //----------------------------------------------------------------------------
@@ -187,10 +185,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_PAINT:
         {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
+            hdc = BeginPaint(hWnd, &ps);
             // TODO: Add any drawing code that uses hdc here...
+            TextOut(hdc, 5, 5, g_displayText, wcslen(g_displayText));
 
+			// End application-specific layout section.
             EndPaint(hWnd, &ps);
         }
         break;
@@ -279,7 +278,8 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 	//
 	Main* main = new Main();
     pOutputString = new WCHAR[255];
-	main->Encrypt(lInputString,pOutputString);
+	main->Encrypt(lInputString, pOutputString);
+	UpdateDisplayText(GetActiveWindow(), pOutputString);
 	return;
 }
 
@@ -289,16 +289,10 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 //
 //---------------------------------------------------------------------------------------
 //
-// Function to convert WCHAR* to std::string
+// Function to update the display text.
 //
-//std::string ConvertWCHARToString(const WCHAR* wstr)
-//{
-//    // Convert WCHAR* to std::wstring
-//    std::wstring ws(wstr);
-//
-//    // Use wstring_convert to convert wstring to string
-//    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-//    std::string str = converter.to_bytes(ws);
-//
-//    return str;
-//}
+void UpdateDisplayText(HWND hWnd, const WCHAR* newText)
+{
+    wcscpy_s(g_displayText, MAX_LOADSTRING, newText);
+    InvalidateRect(hWnd, NULL, TRUE);
+}
