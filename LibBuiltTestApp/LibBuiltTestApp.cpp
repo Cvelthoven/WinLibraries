@@ -143,8 +143,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     PAINTSTRUCT ps;
+
     HDC hdc;
+
     static const WCHAR* pInputText1 = L"Hello, World!"; // Example text to display
+    WCHAR* context = NULL;
+
+    int y = 5;
 
     switch (message)
     {
@@ -187,7 +192,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             hdc = BeginPaint(hWnd, &ps);
             // TODO: Add any drawing code that uses hdc here...
-            TextOut(hdc, 5, 5, g_displayText, wcslen(g_displayText));
+			//---------------------------------------------------------------------------
+			//
+			// Search for end of line character and write line by line.
+            //
+			WCHAR* context = NULL;
+			WCHAR* line = wcstok_s(g_displayText, L"\n", &context);
+			while (line != NULL)
+			{
+                TextOut(hdc, 5, y, line, wcslen(line));
+				y += 20;
+				line = wcstok_s(NULL, L"\n", &context);
+			}
 
 			// End application-specific layout section.
             EndPaint(hWnd, &ps);
@@ -288,7 +304,7 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 	pDisplayString = new WCHAR[MAX_LOADSTRING];
 	wcscpy_s(pDisplayString, MAX_LOADSTRING, L"Input string: ");
     wcscat_s(pDisplayString, MAX_LOADSTRING, lInputString);
-	wcscat_s(pDisplayString, MAX_LOADSTRING, L" -> Output string: ");
+	wcscat_s(pDisplayString, MAX_LOADSTRING, L"\nOutput string: ");
     wcscat_s(pDisplayString, MAX_LOADSTRING, pOutputString);
 	UpdateDisplayText(GetActiveWindow(), pDisplayString);
 
