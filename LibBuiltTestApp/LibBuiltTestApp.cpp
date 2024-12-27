@@ -272,14 +272,33 @@ INT_PTR CALLBACK Encrypt(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 {
     static WCHAR* pOutputString = NULL;
-    //--------------------------------------------------------------------------------------
+	static WCHAR* pDisplayString = NULL;
+    //-----------------------------------------------------------------------------------
 	// 
 	// Create an instance of the Main class.
 	//
 	Main* main = new Main();
-    pOutputString = new WCHAR[255];
+    pOutputString = new WCHAR[MAX_LOADSTRING];
 	main->Encrypt(lInputString, pOutputString);
-	UpdateDisplayText(GetActiveWindow(), pOutputString);
+
+	//-----------------------------------------------------------------------------------
+	//
+	// Update the display text.
+    //
+	pDisplayString = new WCHAR[MAX_LOADSTRING];
+	wcscpy_s(pDisplayString, MAX_LOADSTRING, L"Input string: ");
+    wcscat_s(pDisplayString, MAX_LOADSTRING, lInputString);
+	wcscat_s(pDisplayString, MAX_LOADSTRING, L" -> Output string: ");
+    wcscat_s(pDisplayString, MAX_LOADSTRING, pOutputString);
+	UpdateDisplayText(GetActiveWindow(), pDisplayString);
+
+	//-----------------------------------------------------------------------------------
+	//
+	// Clean up.
+	//
+	delete[] pOutputString;
+	delete[] pDisplayString;
+	delete main;
 	return;
 }
 
