@@ -18,7 +18,7 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 //---------------------------------------------------------------------------------------
 // Global variables for the application.
 //
-WCHAR g_displayText[MAX_LOADSTRING] = L"Hello, World!";
+WCHAR g_displayText[MAX_LOADSTRING] = L"Class test application";
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -39,8 +39,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	//--------------------------------------------------------------------------------------
 	// Actual code for the application starts here.
 	//
-	//Main* main = new Main();
-
+	
     //
 	// Actual code for the application ends here.
     //
@@ -146,7 +145,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     HDC hdc;
 
-    static const WCHAR* pInputText1 = L"Hello, World!"; // Example text to display
+    static const WCHAR* pInputText1 = L"Class test program"; // Example text to display
     WCHAR* context = NULL;
 
     int y = 5;

@@ -5,7 +5,9 @@
 // This is the entry point for building and testing the WinLibrary classes.
 //
 //---------------------------------------------------------------------------------------
+#include "Encryption.h"
 #include "Main.h"
+#include <cstring>
 #include <Windows.h>
 
 //---------------------------------------------------------------------------------------
@@ -27,9 +29,24 @@ Main::Main()
 //
 int Main::Encrypt(const WCHAR *lInputString, WCHAR *lOutputString)
 {
-	wcscpy_s(lOutputString, wcslen(lInputString) + 1, lInputString);
+    // Convert WCHAR to unsigned char
+    int input_len = wcslen(lInputString) * sizeof(WCHAR);
+    unsigned char* input = reinterpret_cast<unsigned char*>(const_cast<WCHAR*>(lInputString));
+    unsigned char output[128];
+    int output_len;
+
+    // AES key and IV (for demonstration purposes, use a secure method to generate and store these)
+    unsigned char key[32] = { 0 };
+    unsigned char iv[16] = { 0 };
+
+    Encryption encryption(key, iv);
+    encryption.Encrypt(input, input_len, output, output_len);
+
+    // Convert unsigned char to WCHAR
+    std::memcpy(lOutputString, output, output_len);
+    lOutputString[output_len / sizeof(WCHAR)] = L'\0';
+
 	return 0;
-	
 }
 
 //---------------------------------------------------------------------------------------
