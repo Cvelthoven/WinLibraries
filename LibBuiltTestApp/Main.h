@@ -16,6 +16,6 @@ public:
 // Test the functions of the encryption class
 //
 	int Encrypt(const WCHAR* lInputString, WCHAR* lOutputString);
-	int Decrypt();
+	int Decrypt(const WCHAR* lInputString, WCHAR* lOutputString);
 };
 

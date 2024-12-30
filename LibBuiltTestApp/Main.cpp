@@ -53,10 +53,26 @@ int Main::Encrypt(const WCHAR *lInputString, WCHAR *lOutputString)
 // 
 // Test Decrypt function.
 //
-int Main::Decrypt()
+int Main::Decrypt(const WCHAR* lInputString, WCHAR* lOutputString)
 {
-	return 0;
+    // Convert WCHAR to unsigned char
+    int input_len = wcslen(lInputString) * sizeof(WCHAR);
+    unsigned char* input = reinterpret_cast<unsigned char*>(const_cast<WCHAR*>(lInputString));
+    unsigned char output[128];
+    int output_len;
 
+    // AES key and IV (for demonstration purposes, use a secure method to generate and store these)
+    unsigned char key[32] = { 0 };
+    unsigned char iv[16] = { 0 };
+
+    Encryption encryption(key, iv);
+    encryption.Decrypt(input, input_len, output, output_len);
+
+    // Convert unsigned char to WCHAR
+    std::memcpy(lOutputString, output, output_len);
+    lOutputString[output_len / sizeof(WCHAR)] = L'\0';
+
+    return 0;
 }
 
 //#include <string>

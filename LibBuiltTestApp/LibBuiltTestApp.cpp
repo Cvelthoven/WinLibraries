@@ -2,14 +2,14 @@
 //
 
 #include "framework.h"
-#include "LibBuiltTestApp.h"
+#include <Windows.h>
 //---------------------------------------------------------------------------------------
 // Extra includes for the application.
-
 // Project includes.
 #include "Main.h"
+#include "LibBuiltTestApp.h"
 
-#define MAX_LOADSTRING 100
+#define MAX_LOADSTRING 256
 
 // Global Variables:
 HINSTANCE hInst;                                // current instance
@@ -28,9 +28,9 @@ INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    Encrypt(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+    _In_opt_ HINSTANCE hPrevInstance,
+    _In_ LPWSTR    lpCmdLine,
+    _In_ int       nCmdShow)
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
@@ -288,12 +288,19 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 {
     static WCHAR* pOutputString = NULL;
 	static WCHAR* pDisplayString = NULL;
+	static WCHAR* pDecryptString = NULL;
+
     //-----------------------------------------------------------------------------------
 	// 
 	// Create an instance of the Main class.
 	//
 	Main* main = new Main();
     pOutputString = new WCHAR[MAX_LOADSTRING];
+	pDecryptString = new WCHAR[MAX_LOADSTRING];
+	//-----------------------------------------------------------------------------------
+    //
+	// Encrypt the input string.
+    //
 	main->Encrypt(lInputString, pOutputString);
 
 	//-----------------------------------------------------------------------------------
@@ -307,12 +314,29 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
     wcscat_s(pDisplayString, MAX_LOADSTRING, pOutputString);
 	UpdateDisplayText(GetActiveWindow(), pDisplayString);
 
+    //-----------------------------------------------------------------------------------
+    // 
+	// Decrypt the input string.
+    // 
+	main->Decrypt(pOutputString, pDecryptString);
+
+    //-----------------------------------------------------------------------------------
+    //
+    // Update the display text.
+    //
+    wcscat_s(pDisplayString, MAX_LOADSTRING, L"\nDecrypt input string: ");
+    wcscat_s(pDisplayString, MAX_LOADSTRING, pOutputString);
+    wcscat_s(pDisplayString, MAX_LOADSTRING, L"\nOutput string: ");
+    wcscat_s(pDisplayString, MAX_LOADSTRING, pDecryptString);
+    UpdateDisplayText(GetActiveWindow(), pDisplayString);
+
 	//-----------------------------------------------------------------------------------
 	//
 	// Clean up.
 	//
 	delete[] pOutputString;
 	delete[] pDisplayString;
+	delete[] pDecryptString;
 	delete main;
 	return;
 }
