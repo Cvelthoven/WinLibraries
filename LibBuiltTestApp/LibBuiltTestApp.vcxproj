@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\LibClasses\Encryption.h" />
+    <ClInclude Include="..\LibClasses\Timer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="LibBuiltTestApp.h" />
     <ClInclude Include="Main.h" />
@@ -142,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\LibClasses\Encryption.cpp" />
+    <ClCompile Include="..\LibClasses\Timer.cpp" />
     <ClCompile Include="LibBuiltTestApp.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
