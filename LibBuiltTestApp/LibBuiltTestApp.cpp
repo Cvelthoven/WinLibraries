@@ -5,6 +5,7 @@
 // Include files of general use libraries
 //
 #include "framework.h"
+#include <cwchar>
 
 //---------------------------------------------------------------------------------------
 // Extra includes for the application.
@@ -294,6 +295,7 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
     static WCHAR* pOutputString = NULL;
 	static WCHAR* pDisplayString = NULL;
 	static WCHAR* pDecryptString = NULL;
+	static WCHAR pRunTimeEncrypt[32];
 	double dRunTimeEncrypt = 0.0;
 
     //-----------------------------------------------------------------------------------
@@ -310,6 +312,11 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 	main->Encrypt(lInputString, pOutputString, &dRunTimeEncrypt);
 
 	//-----------------------------------------------------------------------------------
+    // 
+	// Convert runtime double to WCHAR.
+    // 
+    swprintf(pRunTimeEncrypt, 32, L"%.4f ms", dRunTimeEncrypt);
+    //-----------------------------------------------------------------------------------
 	//
 	// Update the display text.
     //
@@ -318,7 +325,9 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
     wcscat_s(pDisplayString, MAX_LOADSTRING, lInputString);
 	wcscat_s(pDisplayString, MAX_LOADSTRING, L"\nOutput string: ");
     wcscat_s(pDisplayString, MAX_LOADSTRING, pOutputString);
-	UpdateDisplayText(GetActiveWindow(), pDisplayString);
+    wcscat_s(pDisplayString, MAX_LOADSTRING, L"\nEncryption runtime: ");
+    wcscat_s(pDisplayString, MAX_LOADSTRING, pRunTimeEncrypt);
+    UpdateDisplayText(GetActiveWindow(), pDisplayString);
 
     //-----------------------------------------------------------------------------------
     // 
