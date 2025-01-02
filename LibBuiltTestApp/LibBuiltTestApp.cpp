@@ -1,8 +1,11 @@
 // LibBuiltTestApp.cpp : Defines the entry point for the application.
 //
-
+//---------------------------------------------------------------------------------------
+//
+// Include files of general use libraries
+//
 #include "framework.h"
-#include <Windows.h>
+
 //---------------------------------------------------------------------------------------
 // Extra includes for the application.
 // Project includes.
@@ -10,25 +13,29 @@
 #include "Main.h"
 #include "LibBuiltTestApp.h"
 
-constexpr auto MAX_LOADSTRING = 256;
+const int MAX_LOADSTRING = 256;
 
 // Global Variables:
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 //---------------------------------------------------------------------------------------
+//
 // Global variables for the application.
 //
 WCHAR g_displayText[MAX_LOADSTRING] = L"Class test application";
 
 // Forward declarations of functions included in this code module:
-ATOM MyRegisterClass(HINSTANCE hInstance);
-BOOL InitInstance(HINSTANCE, int);
+ATOM                MyRegisterClass(HINSTANCE hInstance);
+BOOL                InitInstance(HINSTANCE, int);
+LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK    Encrypt(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-    _In_opt_ HINSTANCE hPrevInstance,
-    _In_ LPWSTR lpCmdLine,
-    _In_ int nCmdShow)
+                    _In_opt_ HINSTANCE hPrevInstance,
+                    _In_ LPWSTR lpCmdLine,
+                    _In_ int nCmdShow)
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
@@ -287,6 +294,7 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
     static WCHAR* pOutputString = NULL;
 	static WCHAR* pDisplayString = NULL;
 	static WCHAR* pDecryptString = NULL;
+	double dRunTimeEncrypt = 0.0;
 
     //-----------------------------------------------------------------------------------
 	// 
@@ -299,7 +307,7 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
     //
 	// Encrypt the input string.
     //
-	main->Encrypt(lInputString, pOutputString);
+	main->Encrypt(lInputString, pOutputString, &dRunTimeEncrypt);
 
 	//-----------------------------------------------------------------------------------
 	//
