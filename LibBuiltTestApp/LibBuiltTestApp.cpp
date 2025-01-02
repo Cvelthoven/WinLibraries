@@ -296,7 +296,9 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 	static WCHAR* pDisplayString = NULL;
 	static WCHAR* pDecryptString = NULL;
 	static WCHAR pRunTimeEncrypt[32];
-	double dRunTimeEncrypt = 0.0;
+    static WCHAR pRunTimeDecrypt[32];
+    double dRunTimeEncrypt = 0.0;
+    double dRunTimeDecrypt = 0.0;
 
     //-----------------------------------------------------------------------------------
 	// 
@@ -316,6 +318,7 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 	// Convert runtime double to WCHAR.
     // 
     swprintf(pRunTimeEncrypt, 32, L"%.4f ms", dRunTimeEncrypt);
+
     //-----------------------------------------------------------------------------------
 	//
 	// Update the display text.
@@ -333,7 +336,13 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
     // 
 	// Decrypt the input string.
     // 
-	main->Decrypt(pOutputString, pDecryptString);
+	main->Decrypt(pOutputString, pDecryptString, &dRunTimeDecrypt);
+
+    //-----------------------------------------------------------------------------------
+    // 
+    // Convert runtime double to WCHAR.
+    // 
+    swprintf(pRunTimeDecrypt, 32, L"%.4f ms", dRunTimeDecrypt);
 
     //-----------------------------------------------------------------------------------
     //
@@ -343,6 +352,8 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
     wcscat_s(pDisplayString, MAX_LOADSTRING, pOutputString);
     wcscat_s(pDisplayString, MAX_LOADSTRING, L"\nOutput string: ");
     wcscat_s(pDisplayString, MAX_LOADSTRING, pDecryptString);
+    wcscat_s(pDisplayString, MAX_LOADSTRING, L"\nDecryption runtime: ");
+    wcscat_s(pDisplayString, MAX_LOADSTRING, pRunTimeDecrypt);
     UpdateDisplayText(GetActiveWindow(), pDisplayString);
 
 	//-----------------------------------------------------------------------------------

@@ -94,14 +94,26 @@ int Main::Encrypt(const WCHAR *lInputString, WCHAR *lOutputString, double *dRunT
 // 
 // Test Decrypt function.
 //
-int Main::Decrypt(const WCHAR* lInputString, WCHAR* lOutputString)
+int Main::Decrypt(const WCHAR* lInputString, WCHAR* lOutputString, double* dRunTime)
 {
+    Timer EncryptTimer;
+
     // Convert WCHAR to unsigned char
     int input_len = wcslen(lInputString) * sizeof(WCHAR);
     unsigned char* input = reinterpret_cast<unsigned char*>(const_cast<WCHAR*>(lInputString));
     unsigned char output[128];
     int output_len;
 
+    //-----------------------------------------------------------------------------------
+    // 
+    // Start the timer
+    // 
+    EncryptTimer.Start();
+
+    //-----------------------------------------------------------------------------------
+    // 
+    // Actual encryption routine
+    // 
     // AES key and IV (for demonstration purposes, use a secure method to generate and store these)
     unsigned char key[32] = { 0 };
     unsigned char iv[16] = { 0 };
@@ -109,9 +121,27 @@ int Main::Decrypt(const WCHAR* lInputString, WCHAR* lOutputString)
     Encryption encryption(key, iv);
     encryption.Decrypt(input, input_len, output, output_len);
 
+    //-----------------------------------------------------------------------------------
+    //
+    // Stop the timer
+    //
+    EncryptTimer.Stop();
+
+    //-----------------------------------------------------------------------------------
+    // 
+    // Prepare output
+    // 
+    // ----------------------------------------------------------------------------------
+    // 
     // Convert unsigned char to WCHAR
     std::memcpy(lOutputString, output, output_len);
     lOutputString[output_len / sizeof(WCHAR)] = L'\0';
+
+    //-----------------------------------------------------------------------------------
+    //
+    //  Get the elapsed time
+    //
+    *dRunTime = EncryptTimer.GetElapsedMilliseconds();
 
     return 0;
 }
