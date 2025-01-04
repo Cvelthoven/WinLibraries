@@ -251,7 +251,9 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 //
 INT_PTR CALLBACK Encrypt(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	static WCHAR* pInputText = NULL;
+	static WCHAR* pInputText = NULL,
+		        * pAesKey = NULL,
+		        * pInitVector = NULL;
 
 	UNREFERENCED_PARAMETER(lParam);
 	switch (message)
@@ -262,13 +264,32 @@ INT_PTR CALLBACK Encrypt(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		if (LOWORD(wParam) == IDOK)
 		{
 			//------------------------------------------------------------------------------------
-            // 
-            // Get the text from the input box and convert to string
+            //  IDC_ENCRYPTINITVECTOR
+            // Get the text from the input box
             //
 			int iTextLength = GetWindowTextLength(GetDlgItem(hDlg, IDC_ENCRYPTINPUT));
 			pInputText = new WCHAR[iTextLength + 1];
 			GetWindowText(GetDlgItem(hDlg, IDC_ENCRYPTINPUT), pInputText, iTextLength + 1);
-			EndDialog(hDlg, LOWORD(wParam));
+            //EndDialog(hDlg, LOWORD(wParam));
+
+			//------------------------------------------------------------------------------------
+            // 
+			// Get the text from the AES key box
+            iTextLength = GetWindowTextLength(GetDlgItem(hDlg, IDC_ENCRYPTAESKEY));
+            pAesKey = new WCHAR[iTextLength + 1];
+            GetWindowText(GetDlgItem(hDlg, IDC_ENCRYPTAESKEY), pAesKey, iTextLength + 1);
+
+            //------------------------------------------------------------------------------------
+            // 
+            // Get the text from the AES key box
+            iTextLength = GetWindowTextLength(GetDlgItem(hDlg, IDC_ENCRYPTINITVECTOR));
+            pInitVector = new WCHAR[iTextLength + 1];
+            GetWindowText(GetDlgItem(hDlg, IDC_ENCRYPTINITVECTOR), pInitVector, iTextLength + 1);
+
+            //------------------------------------------------------------------------------------
+			//
+			// Call the dialog box handler to encrypt the input string.
+            EndDialog(hDlg, LOWORD(wParam));
             DialogEncryptInputBoxHandler(pInputText);
 
 			return (INT_PTR)TRUE;
