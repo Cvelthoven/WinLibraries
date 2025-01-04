@@ -1,8 +1,21 @@
+//---------------------------------------------------------------------------------------
+//
+// Module: Encryption.cpp
+//
+// Encryption class functions.
+//
+//---------------------------------------------------------------------------------------
+//
+// Include files of class libraries
 #include "Encryption.h"
 #include <openssl/evp.h>
 #include <openssl/aes.h>
 #include <cstring>
 
+//---------------------------------------------------------------------------------------
+//
+// Constructor
+//
 Encryption::Encryption(const unsigned char* key, const unsigned char* iv)
     : m_key(key), m_iv(iv)
 {
@@ -13,12 +26,20 @@ Encryption::Encryption(const unsigned char* key, const unsigned char* iv)
     EVP_DecryptInit_ex(m_decryptCtx, EVP_aes_256_cbc(), NULL, m_key, m_iv);
 }
 
+//---------------------------------------------------------------------------------------
+//
+// Destructor
+//
 Encryption::~Encryption()
 {
     EVP_CIPHER_CTX_free(m_encryptCtx);
     EVP_CIPHER_CTX_free(m_decryptCtx);
 }
 
+//---------------------------------------------------------------------------------------
+//
+// Encrypt the plaintext
+//
 void Encryption::Encrypt(const unsigned char* plaintext, int plaintext_len, unsigned char* ciphertext, int& ciphertext_len)
 {
     int len;
@@ -29,6 +50,10 @@ void Encryption::Encrypt(const unsigned char* plaintext, int plaintext_len, unsi
     ciphertext_len += len;
 }
 
+//---------------------------------------------------------------------------------------
+//
+// Decrypt the ciphertext
+//
 void Encryption::Decrypt(const unsigned char* ciphertext, int ciphertext_len, unsigned char* plaintext, int& plaintext_len)
 {
     int len;
