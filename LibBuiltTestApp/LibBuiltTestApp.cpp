@@ -270,7 +270,6 @@ INT_PTR CALLBACK Encrypt(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			int iTextLength = GetWindowTextLength(GetDlgItem(hDlg, IDC_ENCRYPTINPUT));
 			pInputText = new WCHAR[iTextLength + 1];
 			GetWindowText(GetDlgItem(hDlg, IDC_ENCRYPTINPUT), pInputText, iTextLength + 1);
-            //EndDialog(hDlg, LOWORD(wParam));
 
 			//------------------------------------------------------------------------------------
             // 
@@ -281,7 +280,7 @@ INT_PTR CALLBACK Encrypt(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
             //------------------------------------------------------------------------------------
             // 
-            // Get the text from the AES key box
+            // Get the text from the init vector box
             iTextLength = GetWindowTextLength(GetDlgItem(hDlg, IDC_ENCRYPTINITVECTOR));
             pInitVector = new WCHAR[iTextLength + 1];
             GetWindowText(GetDlgItem(hDlg, IDC_ENCRYPTINITVECTOR), pInitVector, iTextLength + 1);
@@ -318,10 +317,9 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
     static WCHAR* pOutputString = NULL;
 	static WCHAR* pDisplayString = NULL;
 	static WCHAR* pDecryptString = NULL;
-	static WCHAR pRunTimeEncrypt[32];
-    static WCHAR pRunTimeDecrypt[32];
     double dRunTimeEncrypt = 0.0;
     double dRunTimeDecrypt = 0.0;
+    WCHAR runtimeBuffer[50];
 
     //-----------------------------------------------------------------------------------
 	// 
@@ -330,6 +328,7 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 	Main* main = new Main();
     pOutputString = new WCHAR[MAX_LOADSTRING];
 	pDecryptString = new WCHAR[MAX_LOADSTRING];
+
 	//-----------------------------------------------------------------------------------
     //
 	// Encrypt the input string.
@@ -340,7 +339,7 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
     // 
 	// Convert runtime double to WCHAR.
     // 
-    swprintf(pRunTimeEncrypt, 32, L"%.4f ms", dRunTimeEncrypt);
+    DoubleToWChar(dRunTimeEncrypt, runtimeBuffer, 50);
 
     //-----------------------------------------------------------------------------------
 	//
@@ -352,7 +351,8 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 	wcscat_s(pDisplayString, MAX_LOADSTRING, L"\nOutput string: ");
     wcscat_s(pDisplayString, MAX_LOADSTRING, pOutputString);
     wcscat_s(pDisplayString, MAX_LOADSTRING, L"\nEncryption runtime: ");
-    wcscat_s(pDisplayString, MAX_LOADSTRING, pRunTimeEncrypt);
+    wcscat_s(pDisplayString, MAX_LOADSTRING, runtimeBuffer);
+    wcscat_s(pDisplayString, MAX_LOADSTRING, L" ms");
     UpdateDisplayText(GetActiveWindow(), pDisplayString);
 
     //-----------------------------------------------------------------------------------
@@ -365,7 +365,7 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
     // 
     // Convert runtime double to WCHAR.
     // 
-    swprintf(pRunTimeDecrypt, 32, L"%.4f ms", dRunTimeDecrypt);
+    DoubleToWChar(dRunTimeDecrypt, runtimeBuffer, 50);
 
     //-----------------------------------------------------------------------------------
     //
@@ -376,7 +376,8 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
     wcscat_s(pDisplayString, MAX_LOADSTRING, L"\nOutput string: ");
     wcscat_s(pDisplayString, MAX_LOADSTRING, pDecryptString);
     wcscat_s(pDisplayString, MAX_LOADSTRING, L"\nDecryption runtime: ");
-    wcscat_s(pDisplayString, MAX_LOADSTRING, pRunTimeDecrypt);
+    wcscat_s(pDisplayString, MAX_LOADSTRING, runtimeBuffer);
+    wcscat_s(pDisplayString, MAX_LOADSTRING, L" ms");
     UpdateDisplayText(GetActiveWindow(), pDisplayString);
 
 	//-----------------------------------------------------------------------------------
@@ -396,6 +397,17 @@ void DialogEncryptInputBoxHandler(const WCHAR *lInputString)
 //
 //---------------------------------------------------------------------------------------
 //
+// Function to convert double to WCHAR.
+//
+#include <cwchar>
+
+void DoubleToWChar(double value, WCHAR* buffer, size_t bufferSize)
+{
+    swprintf(buffer, bufferSize, L"%.4f", value);
+}
+
+//---------------------------------------------------------------------------------------
+// 
 // Function to update the display text.
 //
 void UpdateDisplayText(HWND hWnd, const WCHAR* newText)

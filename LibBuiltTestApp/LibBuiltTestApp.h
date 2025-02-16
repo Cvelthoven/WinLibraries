@@ -22,4 +22,5 @@ void DialogEncryptInputBoxHandler(const WCHAR* lInputString);
 //
 // Function prototype of the function to update the display text.
 //
+void DoubleToWChar(double value, WCHAR* buffer, size_t bufferSize);
 void UpdateDisplayText(HWND hWnd, const WCHAR* newText);
